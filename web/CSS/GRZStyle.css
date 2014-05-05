@@ -1,0 +1,527 @@
+/* Slider */
+
+#slider {
+   background: #000;
+   overflow:hidden;
+   height: 450px;
+   width: 1024px;
+   margin-top:5px;
+   margin-bottom:40px;
+   background-color:#FFFFFF;
+
+}
+
+#slideImage {
+	height: 480px;
+	width:6168px;
+	position:relative;
+	margin:0px;
+	padding:0px;
+	animation: cycle 33s linear infinite;
+}
+
+#slideImage img{
+    width: 1024px;
+    height: 450px;
+}
+
+@keyframes cycle {
+   0%  {left:0px; opacity: 1;}
+   12% {left:0px; opacity: 1;}
+   16% {left:0px; opacity: 0;}
+   17% {left:-1028px; opacity: 0;}
+   20% {left:-1028px; opacity: 1;}
+   32% {left:-1028px; opacity: 1;}
+   36% {left:-1028px; opacity: 0;}
+   37% {left:-2057px; opacity: 0;}
+   40% {left:-2057px; opacity: 1;}
+   52% {left:-2057px; opacity: 1;}
+   56% {left:-2057px; opacity: 0;}
+   57% {left:-3085px; opacity: 0;}
+   60% {left:-3085px; opacity: 1;} 
+   72% {left:-3085px; opacity: 1;}
+   76% {left:-3085px; opacity: 0;}
+   77% {left:-4114px; opacity: 0;}
+   80% {left:-4114px; opacity: 1;}
+   92% {left:-4114px; opacity: 1;}
+   96% {left:-4114px; opacity: 0;}
+   97% {left:-5142px; opacity: 0;}
+   100% {left:-5142px; opacity: 1;}
+}
+
+
+#headerBarOuter{
+    width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+   
+}
+.headerBar{
+    border : 3px solid;
+    border-color: white;
+    background-color: whitesmoke;
+    width: 800px;
+    height: 80px;
+    position: absolute;
+     z-index: 1;
+}
+.headerBar #logo {
+    width: 200px;
+    height: 80px;
+    float: left;
+    font-family: sans-serif;
+    font-size: 16px;
+    color:#2F8129;
+    text-align: center;
+    font-weight: bold;
+}
+
+.headerBar #logo h {
+    margin-left: 50px;
+    font-family: sans-serif;
+    font-size: 20px;
+    color:red;
+    text-align: center;
+    border: 5px solid;
+    display: block;
+    width: 90px;
+    height: 30px;
+    font-weight: bolder;
+    border-color: #BE2129;
+}
+
+.headerBar #navigationBar {
+    width: 550px;
+    height: 80px;
+    float: right;
+    
+}
+
+.headerBar #navigationBar li{
+    display: inline;
+    list-style-type: none;
+    padding-right: 20px;
+}
+
+.headerBar #navigationBar a {
+    height: 30px;
+    width: 80px;
+    font-family: sans-serif;
+    color:red;
+    font-size:20px;
+}
+
+.footer{
+    width: 1024px;
+    height: 40px;
+    background-color: #BE2129;
+    border : 3px solid black; 
+    text-align: center;
+    font-family: sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5px;
+}
+
+.homeHeader {
+    width: 1024px;
+    height: 450px;
+    margin-left: auto;
+    margin-right: auto;
+}
+#loginBoxOuter{
+    width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.homeHeader #loginBox{
+    width: 800px;
+    height: 60px;
+    position: absolute;
+    border: 2px solid;
+    border-color:black;
+    background-color: white;
+    margin-top: -80px;
+    font-family: sans-serif;
+    z-index: 1;
+}
+
+.homeMenu{
+    width: 1024px;
+    height: 512px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.homeMenu #itemDiv{
+    width: 1024px;
+    height: 250px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.homeMenu #itemDiv #item1{
+    background-color: #BE2129;
+    line-height: 250px;
+    text-align: center;
+    color:white;
+    font-family:sans-serif;
+    font-size:42px;
+    opacity:0.6;
+}
+
+.homeMenu #itemDiv #background1 :hover{
+    background-color: whitesmoke;
+    cursor: pointer;
+}
+.homeMenu #itemDiv #background1 {
+    border: 3px solid;
+    border-color: white;
+    float:left;
+    width: 506px;
+    height: 250px;
+}
+.homeMenu #itemDiv #background1 img {
+    width: 506px;
+    height: 250px;
+    position: absolute;
+    margin: auto;
+    z-index: -1;
+}
+
+.homeMenu #itemDiv #item2{
+    background-color: #BE2129;
+    line-height: 250px;
+    text-align: center;
+    color:white;
+    font-family:sans-serif;
+    font-size:42px;
+    opacity:0.6;
+}
+
+.homeMenu #itemDiv #background2 :hover{
+    background-color: whitesmoke;
+    cursor: pointer;
+}
+.homeMenu #itemDiv #background2 {
+    border: 3px solid;
+    border-color: white;
+    float:left;
+    width: 335px;
+    height: 250px;
+}
+.homeMenu #itemDiv #background2 img {
+    width: 335px;
+    height: 250px;
+    position: absolute;
+    margin: auto;
+    z-index: -1;
+}
+
+/*register*/
+.outer{
+    width: 1024px;
+    overflow:auto;
+    background: #BE2129;
+    margin-left: auto;
+    margin-right: auto;
+    border: 2px solid black;
+}
+
+.registerDiv{
+    width: 800px;
+    height: 450px;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:100px;
+    margin-bottom: 10px;
+    background-color: white;
+    border: 3px solid black;
+}
+
+.registerDiv #errorBox{
+    width: 300px;
+    height: 24px;
+    background-color: #BE2129;
+    color:white;
+    padding-left: 10px;
+}
+
+.registerDiv input{
+    width: 300px;
+    height: 24px;
+}
+
+.registerDiv textarea{
+    width: 300px;
+    height: 100px;
+}
+
+.registerDiv label {
+    width: 150px;
+    height: 24px;
+    font-family: sans-serif;
+    display: block;
+}
+
+.registerDiv #registerButton {
+    display: block;
+    background-color: #BE2129;
+    color:white;
+    width: 100px;
+    text-align: center;
+    height: 35px;
+}
+
+/*Menu*/
+.menuDiv{
+    width: 800px;
+    height: 650px;
+    margin-top: 100px;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+.menuDiv .searchBar{
+    width: 800px;
+    height: 60px;
+    
+    margin-right: auto;
+    margin-left: auto;
+    border: 3px solid black;
+    background-color: white;
+}
+
+.searchBar #searchDiv{
+    float:left;
+    width: 350px;
+    height: 50px;
+    margin-right: 20px;
+    margin-left: 10px;
+    border: 1px white;
+}
+
+.searchBar #input{
+    width: 220px;
+    height: 24px;
+    display: block;
+    margin-left:10px;
+    margin-top:12px;
+    float:left;
+}
+
+.searchBar #searchButton{
+    float:right;
+    display: block;
+    background-color: #BE2129;
+    color:white;
+    width: 80px;
+    text-align: center;
+    height: 30px;
+    margin-left:10px;
+    margin-top:12px;
+    border: 2px solid black;
+}
+
+.menuDiv .itemList {
+    width: 800px;
+    height: 408px;
+    border: 1px white;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+}
+
+.itemList .productView {
+    width: 257px;
+    height: 200px;
+    background-color: white;
+}
+.itemList .productView img {
+    width: 240px;
+    height: 150px;
+    margin:6px;
+    border: 1px solid whitesmoke;
+}
+
+.itemList #description{
+    float:left;
+    border: 2px solid black;
+    margin: 3px;
+    
+}
+.itemList #description #desc{
+    width: 257px;
+    height: 200px;
+    display: block;
+    position:absolute;
+    visibility: hidden;
+    background-color: #944B41;
+    opacity: 0.6;
+    text-align: center;
+    line-height: 100px;
+    color: orange;
+    
+}
+
+.itemList #description:hover #desc{
+    visibility: visible;
+}
+
+.paging {
+    width:800px;
+    height: 30px;
+    border: 2px solid black;
+    background-color: white;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.addProduct{
+    width: 800px;
+    height: 30px;
+    border: 2px solid black;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
+    margin-bottom: 10px;
+    background-color: white;
+    font-family: sans-serif;
+    font-size:14px;
+}
+.addProduct p{
+    font-family: sans-serif;
+    float: left;
+    display: block;
+    width: 400px;
+    height: 20px;
+}
+.addProduct a{
+    width: 80px;
+    height: 20px;
+    margin-top:3px;
+    margin-right: 20px;
+    padding:1px 5px;;
+    border: 1px solid black;
+    float:right;
+    background-color: #BE2129;
+    color:white;
+    display: block;
+}
+
+.productList{
+    width: 800px;
+    overflow: auto;
+    margin: auto;
+    padding-bottom: 10px;
+}
+.productList .productView {
+    
+    float:left;
+    width: 257px;
+    height: 200px;
+    background-color: white;
+    margin:3px;
+}
+.productList .productView img {
+    width: 240px;
+    height: 150px;
+    margin:6px;
+    border: 1px solid whitesmoke;
+}
+
+/*Customer*/
+.customerList{
+    width:800px;
+    overflow: auto;
+    background-color: white;
+    border: 1px solid black;
+    margin:100px auto 10px auto;
+    text-align: center;
+}
+
+.customerList .customerView{
+    width: 750px;
+    height: 80px;
+    border: 2px solid black;
+    margin: 10px auto;
+    font-family: sans-serif;
+}
+
+.customerList .customerView table tr{
+    width: 750px;
+    height: 25px;
+}
+.customerList .customerView table td{
+    width: 325px;
+    text-align: left;
+}
+
+/*add product*/
+
+.addProductDiv{
+    width: 800px;
+    height: 400px;
+    margin:100px auto 10px auto;
+    background-color: white;
+    text-align: center;
+}
+
+.addProductDiv table td{
+    text-align: left;
+}
+
+.addProductDiv  #errorBox{
+    width: 300px;
+    height: 24px;
+    background-color: #BE2129;
+    color:white;
+    padding-left: 10px;
+}
+
+.addProductDiv  input{
+    width: 300px;
+    height: 24px;
+}
+
+.addProductDiv  textarea{
+    width: 300px;
+    height: 100px;
+}
+
+.addProductDiv  label {
+    width: 150px;
+    height: 24px;
+    font-family: sans-serif;
+    display: block;
+}
+
+.addProduct #browseImage{
+    display: block;
+    background-color: red;
+    width: 80px;
+    height: 24px;
+}
+
+.addProductDiv #addButton {
+    display: block;
+    background-color: #BE2129;
+    color:white;
+    width: 100px;
+    text-align: center;
+    height: 35px;
+}
+
+#button{
+    display: block;
+    background-color: #BE2129;
+    color:white;
+    width: 100px;
+    text-align: center;
+    height: 35px;
+}
