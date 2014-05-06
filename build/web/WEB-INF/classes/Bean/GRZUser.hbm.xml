@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="Bean.GRZUser" table="user">
+    <id name="userID" column="ID" type="integer">
+        <generator class="increment"></generator>
+    </id>
+    <property name="username" column="Username" type="string"></property>
+    <property name="password" column="Password" type="string"></property>
+    <property name="email" column="Email" type="string"></property>
+    <property name="address" column="Address" type="string"></property>
+    <property name="phone" column="Phone" type="string"></property>
+    <property name="status" column="Status" type="string"></property>
+  </class>
+</hibernate-mapping>
