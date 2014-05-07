@@ -4,8 +4,6 @@
  */
 package Bean;
 
-import Controller.Connect;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.servlet.ServletContext;
 
