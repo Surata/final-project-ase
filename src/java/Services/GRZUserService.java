@@ -5,26 +5,18 @@
 package Services;
 
 import Bean.GRZUser;
-import Controller.HibernateUtil;
 import java.util.List;
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 
 /**
  *
  * @author edista
  */
-public class GRZUserService {
-    private Session sess;
-    private Transaction tr;
-    private List users;
+public class GRZUserService extends GRZService {
     
     public GRZUserService() {
-        sess = HibernateUtil.getSessionFactory().openSession();   
+        sess = getSession();
     }
-    
-    
+
     public void insert(String username,
                        String password,
                        String name,
@@ -48,29 +40,43 @@ public class GRZUserService {
         tr.commit();
     }
     
-    public GRZUser searchById(int id){
-        
-        sess = getSession();
+    public List selectAll(){
         tr = sess.beginTransaction();
-        users = sess.createQuery(GRZConstant.USER_SEARCH_BY_ID_QUERY(id)).list();
-        GRZUser user = (GRZUser)users.get(0);
-        return user;
+        results = sess.createQuery(GRZConstant.USER_SELECT_ALL_QUERY).list();
+        return results;
     }
     
-    public GRZUser search(String username, String password){
-        
-        sess = getSession();
+    public GRZUser selectWithId(int id){
+
         tr = sess.beginTransaction();
-        users = sess.createQuery(GRZConstant.USER_SEARCH_QUERY(username, password)).list();
-        if(users.size()>0){
-            GRZUser user = (GRZUser)users.get(0);
+        results = sess.createQuery(GRZConstant.USER_SELECT_WITH_ID_QUERY(id)).list();
+        if(results.size()>0){
+            GRZUser user = (GRZUser)results.get(0);
+            return user;
+        }
+        
+        return null;
+    }
+    
+    public GRZUser select(String username, String password){
+
+        tr = sess.beginTransaction();
+        results = sess.createQuery(GRZConstant.USER_SELECT_QUERY(username, password)).list();
+        if(results.size()>0){
+            GRZUser user = (GRZUser)results.get(0);
             return user;
         }
         return null;
         
     }
     
-    private Session getSession(){
-        return HibernateUtil.getSessionFactory().openSession();   
+    public GRZUser selectWithUsername(String username){
+        tr = sess.beginTransaction();
+        results =  sess.createQuery(GRZConstant.USER_SELECT_WITH_USERNAME(username)).list();
+         if(results.size()>0){
+            GRZUser user = (GRZUser)results.get(0);
+            return user;
+        }
+        return null;
     }
 }

@@ -5,8 +5,8 @@
 package Controller;
 
 import Bean.GRZUser;
+import Services.GRZUserService;
 import java.io.IOException;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -43,17 +43,10 @@ public class GRZAuthentication {
             for(int i=0; i<cookies.length ;i++){
                 cookie = cookies[i];
                 if(cookie.getName().equals("GRZUser")){
-                    GRZUser user = new GRZUser();
-                    ResultSet rs = user.searchForUsername(app,cookie.getValue());
-                    try {
-                        if(rs.next()){
-                            user.setUsername(rs.getString("Username"));
-                            user.setName(rs.getString("Name"));
-                            user.setStatus(rs.getString("Status"));
-                            session.setAttribute("user", user);
-                        }
-                    } catch (SQLException ex) {
-                        Logger.getLogger(GRZAuthentication.class.getName()).log(Level.SEVERE, null, ex);
+                    GRZUserService userService = new GRZUserService();
+                    GRZUser user = userService.selectWithUsername(cookie.getValue());
+                    if(user != null){
+                        session.setAttribute("user", user);
                     }
                 }
             }

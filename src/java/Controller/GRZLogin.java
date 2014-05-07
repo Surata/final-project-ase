@@ -40,7 +40,7 @@ public class GRZLogin extends HttpServlet {
         
         ServletContext app = getServletContext();
         GRZUserService userService = new GRZUserService();
-        GRZUser user = userService.search(username, password);
+        GRZUser user = userService.select(username, password);
         
         try {
             if(user != null){

@@ -4,8 +4,9 @@
     Author     : edista
 --%>
 
-<%@page import="java.sql.ResultSet"%>
+<%@page import="java.util.List"%>
 <%@page import="Bean.GRZProduct"%>
+<%@page import="Services.GRZProductService"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -46,17 +47,17 @@
                 </div>
                 <div class="itemList">
                     <%
-                    GRZProduct products = new GRZProduct();
-
-                    ResultSet rs;
+                    
+                    GRZProductService productService = new GRZProductService();
+                    List products;
                     if(searchTxt != null && filter != null){
-                        rs = products.searchWithTextAndFilter(getServletContext(), searchTxt, Integer.parseInt(filter));
+                        products = productService.selectWithNameAndPrice(searchTxt, Integer.parseInt(filter));
                     }else if(searchTxt!= null){
-                        rs = products.searchWithText(getServletContext(), searchTxt);
+                        products = productService.selectWithNameLike(searchTxt);
                     }else if(filter != null){
-                        rs = products.searchWithFilter(getServletContext(), Integer.parseInt(filter));
+                        products = productService.selectWithPrice(Integer.parseInt(filter));
                     }else{
-                        rs  = products.searchAll(getServletContext());
+                        products = productService.selectAll();
                     }
 
                     int pageCount = 0;
@@ -68,20 +69,21 @@
                     int endIndex = startIndex + 6;
                     int dataCount = 0;
 
-                    while(rs.next()){
+                    for(int i=0; i<products.size(); i++){
                         dataCount ++;
-                        if(rs.getRow() > startIndex && rs.getRow() <= endIndex){
+                        if(i >= startIndex && i <= endIndex){
+                            GRZProduct product = (GRZProduct)products.get(i); 
                     %>
                     <div id="description">
-                        <label id="desc"><%= rs.getString("Description")%></label>
+                        <label id="desc"><%= product.getDescription()%></label>
                         <div class="productView">
                         <%
-                        out.print("<img src='" + rs.getString("Image") + "' />");
+                        out.print("<img src='" + product.getImage() + "' />");
                         %>
                         <table>
                             <tr>
-                                <td style="width: 170px; color: red;"><%= rs.getString("Name") %></td>
-                                <td style="width: 80px; text-align: right;">Rp. <%= rs.getString("Price") %></td>
+                                <td style="width: 170px; color: red;"><%= product.getName() %></td>
+                                <td style="width: 80px; text-align: right;">Rp. <%= product.getPrice() %></td>
                             </tr>
                         </table>
                     </div>
@@ -116,3 +118,4 @@
         <%@include file="GRZFooter.html"%>
     </body>
 </html>
+

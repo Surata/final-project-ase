@@ -4,8 +4,9 @@
     Author     : edista
 --%>
 
+<%@page import="java.util.List"%>
+<%@page import="Services.GRZProductService"%>
 <%@page import="Controller.GRZAuthentication"%>
-<%@page import="java.sql.ResultSet"%>
 <%@page import="Bean.GRZProduct"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
@@ -22,10 +23,10 @@
         <%@include file="GRZHeader.jsp" %>
         <div class="outer">
              <%
-                GRZProduct products = new GRZProduct();
+                GRZProductService productService = new GRZProductService();
+                List products = productService.selectAll();
 
-                ResultSet rs  = products.searchAll(getServletContext());
-                int count = products.getRowCount(rs);
+                int count = products.size();
                 
              %>
             <div class="addProduct">
@@ -34,16 +35,17 @@
             </div>
             <div class="productList">
                 <%
-                while(rs.next()){
+                for(int i=0;i<products.size();i++){
+                    GRZProduct product = (GRZProduct)products.get(i);
                 %>
                 <div class="productView">
                <%
-                     out.print("<img src='" + rs.getString("Image") + "' />");
+                     out.print("<img src='" + product.getImage() + "' />");
                      %>
                     <table>
                         <tr>
-                            <td style="width: 170px; color: red;"><%= rs.getString("Name") %></td>
-                            <td style="width: 80px; text-align: right;">Rp. <%= rs.getString("Price") %></td>
+                            <td style="width: 170px; color: red;"><%= product.getName() %></td>
+                            <td style="width: 80px; text-align: right;">Rp. <%= product.getPrice() %></td>
                         </tr>
                     </table>
                 </div>

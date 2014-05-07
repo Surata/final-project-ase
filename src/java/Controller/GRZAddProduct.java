@@ -5,6 +5,7 @@
 package Controller;
 
 import Bean.GRZProduct;
+import Services.GRZProductService;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -60,13 +61,9 @@ public class GRZAddProduct extends HttpServlet {
         }
         
         if(errorText.equals("")){
-            GRZProduct product = new GRZProduct();
-            product.setName(name);
-            product.setDescription(desc);
-            product.setPrice(price);
-            product.setImage("Image/" + imageURL);
+            GRZProductService productService = new GRZProductService();
             
-            product.insert(getServletContext());
+            productService.insert(name, desc, Float.parseFloat(price), "Image/"+imageURL);
         
             response.sendRedirect("GRZProduct.jsp");
         }else{

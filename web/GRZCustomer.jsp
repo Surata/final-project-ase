@@ -4,8 +4,10 @@
     Author     : edista
 --%>
 
+<%@page import="Bean.GRZUser"%>
+<%@page import="java.util.List"%>
+<%@page import="Services.GRZUserService"%>
 <%@page import="Controller.GRZAuthentication"%>
-<%@page import="java.sql.ResultSet"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     GRZAuthentication auth = new GRZAuthentication();
@@ -23,33 +25,33 @@
             <div class="customerList">
                 <h1>Customer List</h1>
                 <%
-                GRZUser users = new GRZUser();
+                GRZUserService userService = new GRZUserService();
+                List users = userService.selectAll();
 
-                ResultSet rs  = users.searchAll(getServletContext());
-
-                while(rs.next()){
+                for(int i=0; i<users.size();i++){
+                    GRZUser user = (GRZUser)users.get(i);
                 %>
                 <div class ="customerView">
                     <table>
                         <tr>
                             <td>
-                                Username : <%= rs.getString("Username") %>
+                                Username : <%= user.getUsername() %>
                             </td>
                             <td>
-                                Name : <%= rs.getString("Name") %>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Email : <%= rs.getString("Email") %>
-                            </td>
-                            <td>
-                                Phone : <%= rs.getString("Phone") %>
+                                Name : <%= user.getName() %>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                Address : <%= rs.getString("Address") %>
+                                Email : <%= user.getEmail() %>
+                            </td>
+                            <td>
+                                Phone : <%= user.getPhone() %>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Address : <%= user.getAddress() %>
                             </td>
                             <td> </td>
                         </tr>

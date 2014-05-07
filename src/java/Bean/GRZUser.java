@@ -90,55 +90,5 @@ public class GRZUser {
 
     public void setStatus(String status) {
         this.status = status;
-    }
-    
-    public ResultSet searchAll(ServletContext app){
-        Connect con = new Connect(app);
-        String query = "SELECT * FROM Users";
-        ResultSet rs = con.execute(query);
-        
-        return rs;
-    }
-    
-    public ResultSet searchForUser(ServletContext app, String username, String password){
-        Connect con = new Connect(app);
-        String query = "SELECT * FROM Users WHERE Username = '" + username + "'AND Password = '" + password + "'";
-        ResultSet rs = con.execute(query);
-        
-        return rs;
-        
-    }
-    
-    public ResultSet searchForUsername(ServletContext app, String username){
-        Connect con = new Connect(app);
-        String query = "SELECT * FROM Users WHERE Username='" + username + "'";
-        ResultSet rs = con.execute(query);
-        
-        return rs;
-    }
-    
-    public void insert(ServletContext app){
-        Connect con = new Connect(app);
-      
-        String query = "INSERT INTO Users (Username, Password, Name, Phone, Email, Address, Status) "
-                + "VALUES ('" + username + "','" + password + "','" + name + "','" + phone + "','" + email 
-                + "','" + address + "','" +  status + "')";
-
-        con.Query(query);
-        con.closeConnect();
-      
-    }
-    
-    public void update(ServletContext app){
-        
-    }
-    
-    public void delete(ServletContext app, int id){
-        Connect con = new Connect(app);
-        String query = "DELETE FROM Users WHERE ID =" + id;
-        con.Query(query);
-        con.closeConnect();
-    }
-    
-    
+    } 
 }
