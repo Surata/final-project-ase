@@ -7,6 +7,7 @@
     </id>
     <property name="username" column="Username" type="string"></property>
     <property name="password" column="Password" type="string"></property>
+    <property name="name" column="Name" type="string"></property>
     <property name="email" column="Email" type="string"></property>
     <property name="address" column="Address" type="string"></property>
     <property name="phone" column="Phone" type="string"></property>

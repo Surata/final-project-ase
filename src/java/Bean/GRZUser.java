@@ -5,6 +5,7 @@
 package Bean;
 
 import Controller.Connect;
+import Controller.HibernateUtil;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;

@@ -4,7 +4,7 @@
  */
 package Controller;
 
-import Bean.GRZUser;
+import Services.GRZUserService;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
@@ -90,16 +90,14 @@ public class GRZRegisterUser extends HttpServlet {
         }
         
         if(errorText.equals("")){
-            GRZUser user = new GRZUser();
-            user.setUsername(username);
-            user.setPassword(password);
-            user.setName(name);
-            user.setPhone(phone);
-            user.setEmail(email);
-            user.setAddress(address);
-            user.setStatus(status);
-
-            user.insert(getServletContext());
+            GRZUserService userService = new GRZUserService();
+            userService.insert(username,
+                               password, 
+                               name, 
+                               email, 
+                               phone, 
+                               address, 
+                               status);
 
             response.sendRedirect("index.jsp");
         }else{
