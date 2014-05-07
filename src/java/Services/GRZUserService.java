@@ -7,6 +7,7 @@ package Services;
 import Bean.GRZUser;
 import Controller.HibernateUtil;
 import java.util.List;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -51,7 +52,7 @@ public class GRZUserService {
         
         sess = getSession();
         tr = sess.beginTransaction();
-        users = sess.createQuery("from GRZUser where userID = " + id).list();
+        users = sess.createQuery(GRZConstant.USER_SEARCH_BY_ID_QUERY(id)).list();
         GRZUser user = (GRZUser)users.get(0);
         return user;
     }
@@ -60,7 +61,7 @@ public class GRZUserService {
         
         sess = getSession();
         tr = sess.beginTransaction();
-        users = sess.createQuery("from GRZUser where username = '" + username + "' AND password = '" + password + "'").list();
+        users = sess.createQuery(GRZConstant.USER_SEARCH_QUERY(username, password)).list();
         if(users.size()>0){
             GRZUser user = (GRZUser)users.get(0);
             return user;
