@@ -46,4 +46,30 @@ public class GRZUserService {
         sess.save(user);
         tr.commit();
     }
+    
+    public GRZUser searchById(int id){
+        
+        sess = getSession();
+        tr = sess.beginTransaction();
+        users = sess.createQuery("from GRZUser where userID = " + id).list();
+        GRZUser user = (GRZUser)users.get(0);
+        return user;
+    }
+    
+    public GRZUser search(String username, String password){
+        
+        sess = getSession();
+        tr = sess.beginTransaction();
+        users = sess.createQuery("from GRZUser where username = '" + username + "' AND password = '" + password + "'").list();
+        if(users.size()>0){
+            GRZUser user = (GRZUser)users.get(0);
+            return user;
+        }
+        return null;
+        
+    }
+    
+    private Session getSession(){
+        return HibernateUtil.getSessionFactory().openSession();   
+    }
 }

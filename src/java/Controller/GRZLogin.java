@@ -5,6 +5,7 @@
 package Controller;
 
 import Bean.GRZUser;
+import Services.GRZUserService;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
@@ -38,23 +39,17 @@ public class GRZLogin extends HttpServlet {
         String[] rememberMe = request.getParameterValues("rememberMeChk");
         
         ServletContext app = getServletContext();
-        
-        GRZUser user = new GRZUser();
-        ResultSet rs = user.searchForUser(app, username, password);
+        GRZUserService userService = new GRZUserService();
+        GRZUser user = userService.search(username, password);
         
         try {
-            if(rs.next()){
+            if(user != null){
                 
                 if(app.getAttribute("userCount") == null){
                     app.setAttribute("userCount", 1);
                 }else {
                     increaseUserCount(app);
                 }
-                
-                user.setUserID(Integer.parseInt(rs.getString("ID")));
-                user.setUsername(rs.getString("Username"));
-                user.setName(rs.getString("Name"));
-                user.setStatus(rs.getString("Status"));
                 
                 HttpSession session = request.getSession();
                 session.setAttribute("user", user);
@@ -69,7 +64,7 @@ public class GRZLogin extends HttpServlet {
             }else{
                 response.sendRedirect("index.jsp?err=Username password salah");
             }
-        } catch (SQLException ex) {
+        } catch (Exception ex) {
             Logger.getLogger(GRZUser.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
