@@ -5,7 +5,7 @@
     <id name="orderID" column="ID" type="integer">
         <generator class="increment"></generator>
     </id>
-    <property name="userID" column="UserID" type="integer" />
+    <property name="cartID" column="CartID" type="integer" />
     <property name="productID" column="ProductID" type="integer" />
     <property name="quantity" column="Quantity" type="integer" />
     <property name="subTotal" column="SubTotal" type="float" />

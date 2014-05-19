@@ -10,13 +10,21 @@ package Bean;
  */
 public class GRZOrder {
     private int orderID;
-    private int userID;
+    private int cartID;
     private int productID;
     private int quantity;
     private float subTotal;
     private String date;
 
     public GRZOrder() {
+    }
+
+    public int getCartID() {
+        return cartID;
+    }
+
+    public void setCartID(int cartID) {
+        this.cartID = cartID;
     }
 
     public String getDate() {
@@ -59,11 +67,4 @@ public class GRZOrder {
         this.subTotal = subTotal;
     }
 
-    public int getUserID() {
-        return userID;
-    }
-
-    public void setUserID(int userID) {
-        this.userID = userID;
-    }
 }
