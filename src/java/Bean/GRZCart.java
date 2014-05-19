@@ -18,6 +18,14 @@ public class GRZCart {
     public GRZCart() {
     }
 
+    public int getUserID() {
+        return userID;
+    }
+
+    public void setUserID(int userID) {
+        this.userID = userID;
+    }
+
     public int getCartID() {
         return cartID;
     }
