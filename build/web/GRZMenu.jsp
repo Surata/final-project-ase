@@ -12,7 +12,8 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <link href="CSS/GRZStyle.css" rel="stylesheet"/>
+        <title>Menu Page</title>
     </head>
     <body>
         <%@include file="GRZHeader.jsp" %>
@@ -115,7 +116,7 @@
                 </div>
             </div>
         </div>
-        <%@include file="GRZFooter.html"%>
+        <%@include file="GRZFooter.jsp"%>
     </body>
 </html>
 

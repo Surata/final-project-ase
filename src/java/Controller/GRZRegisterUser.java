@@ -4,6 +4,9 @@
  */
 package Controller;
 
+import BaseClass.GRZBaseController;
+import Constants.GRZConstant;
+import Helper.GRZValidationUtil;
 import Services.GRZUserService;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -17,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author edista
  */
-public class GRZRegisterUser extends HttpServlet {
+public class GRZRegisterUser extends GRZBaseController {
 
     /**
      * Processes requests for both HTTP
@@ -29,6 +32,7 @@ public class GRZRegisterUser extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
@@ -89,28 +93,23 @@ public class GRZRegisterUser extends HttpServlet {
         }
         
         if(errorText.equals("")){
-            GRZUserService userService = new GRZUserService();
-            userService.insert(username,
-                               password, 
-                               name, 
-                               email, 
-                               phone, 
-                               address, 
-                               status);
-
-            response.sendRedirect("index.jsp");
+            Boolean success = GRZUserService.insert(username,
+                                                    password, 
+                                                    name, 
+                                                    email, 
+                                                    phone, 
+                                                    address, 
+                                                    status);
+            if(success){
+                response.sendRedirect(GRZConstant.HOME_PAGE);
+            }else{
+                failedTransactionErrorHandler(GRZConstant.USER_ADD_PAGE, response);
+            }
         }else{
-            errorHandler(errorText, response);
+            errorHandler(GRZConstant.USER_ADD_PAGE ,errorText, response);
         }
 
-    }
-    
-    private void errorHandler(String err, HttpServletResponse response) throws IOException{
-        response.sendRedirect("GRZRegister.jsp?"+ err);
-    }
-    
-    
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    } // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP
      * <code>GET</code> method.

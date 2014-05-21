@@ -8,8 +8,9 @@
 <!DOCTYPE html>
 <html>
     <head>
-         <link href="CSS/GRZStyle.css" rel="stylesheet"/>
-        <title>JSP Page</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link href="CSS/GRZStyle.css" rel="stylesheet"/>
+        <title>Register Page</title>
     </head>
     <body>
        <%@include file="GRZHeader.jsp"%>
@@ -125,6 +126,6 @@
                 </form>
             </div>
         </div>
-        <%@include file="GRZFooter.html"%>
+        <%@include file="GRZFooter.jsp"%>
     </body>
 </html>

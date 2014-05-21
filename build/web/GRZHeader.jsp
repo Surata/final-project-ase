@@ -4,17 +4,14 @@
     Author     : edista
 --%>
 
-<%@page import="Controller.GRZAuthentication"%>
+<%@page import="Helper.GRZAuthentication"%>
+<%@page import="Helper.GRZAuthentication"%>
 <%@page import="Bean.GRZUser"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<head>
-    <link href="CSS/GRZStyle.css" rel="stylesheet"/>
-</head>
 
 <div id="headerBarOuter">
     <div class="headerBar">
         <div id="logo">
-            <h>PIZZA</h>
+            <h1>PIZZA</h1>
             <p>GRAZIE DELIVERY</p>
         </div>
 

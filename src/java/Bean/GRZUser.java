@@ -4,7 +4,7 @@
  */
 package Bean;
 
-import Controller.HibernateUtil;
+import Helper.HibernateUtil;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,6 +25,16 @@ public class GRZUser {
     private String status;
     
     public GRZUser() {} // constructor
+
+    public GRZUser(String username, String password, String name, String phone, String email, String address, String status) {
+        this.username = username;
+        this.password = password;
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.status = status;
+    }
     
     public String getAddress() {
         return address;

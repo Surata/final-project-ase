@@ -4,11 +4,17 @@
     Author     : edista
 --%>
 
+<%@page import="Bean.GRZUser"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Calendar"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link href="CSS/GRZStyle.css" rel="stylesheet"/>
+        <title>Home Page</title>
+    </head>
     <body>
         <%@include file="GRZHeader.jsp"%>
         <div class="homeHeader">
@@ -107,6 +113,6 @@
                 </div>
             </div>
         </div>
-        <%@include file="GRZFooter.html"%>
+        <%@include file="GRZFooter.jsp"%>
     </body>
 </html>

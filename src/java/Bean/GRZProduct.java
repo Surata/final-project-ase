@@ -19,7 +19,15 @@ public class GRZProduct {
     private String image;
     private int count;
 
-    public GRZProduct() {} // constructor
+    public GRZProduct() {
+    }
+
+    public GRZProduct(String name, String description, float price, String image) {
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.image = image;
+    }
     
     public String getDescription() {
         return description;

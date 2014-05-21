@@ -4,6 +4,7 @@
  */
 package Services;
 
+import BaseClass.GRZService;
 import Constants.GRZConstant;
 import Bean.GRZProduct;
 import java.util.List;
@@ -13,63 +14,50 @@ import java.util.List;
  * @author edista
  */
 public class GRZProductService extends GRZService {
-
-    public GRZProductService() {
-        sess = getSession();
-    }
-    
-    public void insert(String name,
+    public static Boolean insert(String name,
                        String description,
                        float price,
                        String image){
         
-        GRZProduct product = new GRZProduct();
-        product.setName(name);
-        product.setDescription(description);
-        product.setPrice(price);
-        product.setImage(image);
-        
-        tr = sess.beginTransaction();
-        tr.begin();
-        sess.save(product);
-        tr.commit();
-        
+        GRZProduct product = new GRZProduct(name, description, price, image);
+        try{
+            tr.begin();
+            sess.save(product);
+            tr.commit();
+            return true;
+        }catch(Exception e){
+            tr.rollback();
+            return false;
+        }
     }
     
-    public List selectAll(){
-        tr = sess.beginTransaction();
-        results = sess.createQuery(GRZConstant.PRODUCT_SELECT_ALL_QUERY).list();
+    public static List selectAll(){
+        results = getListFromQuery(GRZConstant.PRODUCT_SELECT_ALL_QUERY);
         return results;
     }
     
-    public List selectWithPrice(int priceRange){
+    public static List selectWithPrice(int priceRange){
         float minRange = getMinPrice(priceRange);
         float maxRange = getMaxPrice(priceRange);
   
-        tr = sess.beginTransaction();
-        results = sess.createQuery(GRZConstant.PRODUCT_SELECT_WITH_PRICE_QUERY(minRange, maxRange)).list();
+        results = getListFromQuery(GRZConstant.PRODUCT_SELECT_WITH_PRICE_QUERY(minRange, maxRange));
         return results;
     }
     
-    public List selectWithNameLike(String name){
-
-        tr = sess.beginTransaction();
-        results = sess.createQuery(GRZConstant.PRODUCT_SELECT_WITH_NAME_LIKE_QUERY(name)).list();
-        
+    public static List selectWithNameLike(String name){
+        results = getListFromQuery(GRZConstant.PRODUCT_SELECT_WITH_NAME_LIKE_QUERY(name));
         return results;
     }
     
-    public List selectWithNameAndPrice(String name, int priceRange){
+    public static List selectWithNameAndPrice(String name, int priceRange){
         float minRange = getMinPrice(priceRange);
         float maxRange = getMaxPrice(priceRange);
 
-        tr = sess.beginTransaction();
-        results = sess.createQuery(GRZConstant.PRODUCT_SELECT_WITH_NAME_AND_PRICE_QUERY(name, minRange, maxRange)).list();
-         
+        results = getListFromQuery(GRZConstant.PRODUCT_SELECT_WITH_NAME_AND_PRICE_QUERY(name, minRange, maxRange));  
         return results;
     }
     
-    private float getMinPrice(int priceFilter){
+    private static float getMinPrice(int priceFilter){
         float minRange = 0;
         
         switch(priceFilter){
@@ -95,7 +83,7 @@ public class GRZProductService extends GRZService {
         return minRange;
     }
     
-    private float getMaxPrice(int priceFilter){
+    private static float getMaxPrice(int priceFilter){
         float maxRange = 999999;
         
         switch(priceFilter){

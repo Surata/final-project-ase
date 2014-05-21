@@ -2,9 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Services;
+package BaseClass;
 
-import Controller.HibernateUtil;
+import Helper.HibernateUtil;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -15,15 +15,24 @@ import org.hibernate.Transaction;
  */
 public class GRZService {
     
-    protected Session sess;
-    protected Transaction tr;
-    protected List results;
+    protected static Session sess;
+    protected static Transaction tr;
+    protected static List results;
+    
+    static {
+        sess = getSession();
+        tr = sess.beginTransaction();
+    }
 
     public GRZService() {
     }
     
-    protected Session getSession(){
+    protected static Session getSession(){
         return HibernateUtil.getSessionFactory().openSession();   
+    }
+    
+    protected static List getListFromQuery(String query){
+        return sess.createQuery(query).list();
     }
     
 }

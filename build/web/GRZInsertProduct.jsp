@@ -3,7 +3,7 @@
     Created on : Mar 12, 2014, 4:53:32 PM
     Author     : edista
 --%>
-<%@page import="Controller.GRZAuthentication"%>
+<%@page import="Helper.GRZAuthentication"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     GRZAuthentication auth = new GRZAuthentication();
@@ -13,7 +13,8 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <link href="CSS/GRZStyle.css" rel="stylesheet"/>
+        <title>New Product Page</title>
     </head>
     <body>
         <%@include file="GRZHeader.jsp" %>
@@ -97,6 +98,6 @@
                 </form>
             </div>
         </div>
-        <%@include file="GRZFooter.html"%>
+        <%@include file="GRZFooter.jsp"%>
     </body>
 </html>

@@ -2,9 +2,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controller;
+package Helper;
 
 import Bean.GRZUser;
+import Constants.GRZConstant;
 import Services.GRZUserService;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -27,11 +28,11 @@ public class GRZAuthentication {
     
     public void checkUser(HttpSession session, HttpServletResponse response) throws IOException{
         if(session.getAttribute("user") == null){
-            response.sendRedirect("index.jsp");
+            response.sendRedirect(GRZConstant.HOME_PAGE);
         }else{
             GRZUser currentUser = (GRZUser)session.getAttribute("user");
             if(currentUser.getStatus().equals("member")){
-                response.sendRedirect("index.jsp");
+                response.sendRedirect(GRZConstant.HOME_PAGE);
             }
         }
     }
@@ -43,8 +44,7 @@ public class GRZAuthentication {
             for(int i=0; i<cookies.length ;i++){
                 cookie = cookies[i];
                 if(cookie.getName().equals("GRZUser")){
-                    GRZUserService userService = new GRZUserService();
-                    GRZUser user = userService.selectWithUsername(cookie.getValue());
+                    GRZUser user = GRZUserService.selectWithUsername(cookie.getValue());
                     if(user != null){
                         session.setAttribute("user", user);
                     }

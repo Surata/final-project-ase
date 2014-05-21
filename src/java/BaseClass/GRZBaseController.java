@@ -2,26 +2,20 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controller;
+package BaseClass;
 
-import BaseClass.GRZBaseController;
-import Bean.GRZUser;
-import Constants.GRZConstant;
-import Services.GRZUserService;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import javax.servlet.http.*;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  *
  * @author edista
  */
-public class GRZLogin extends GRZBaseController {
+public class GRZBaseController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -33,47 +27,18 @@ public class GRZLogin extends GRZBaseController {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String username = request.getParameter("usernameTxt");
-        String password = request.getParameter("passwordTxt");
-        String[] rememberMe = request.getParameterValues("rememberMeChk");
-        
-        ServletContext app = getServletContext();
-        GRZUser user = GRZUserService.select(username, password);
-        
-        try {
-            if(user != null){
-                if(app.getAttribute("userCount") == null){
-                    app.setAttribute("userCount", 1);
-                }else {
-                    increaseUserCount(app);
-                }
-                
-                HttpSession session = request.getSession();
-                session.setAttribute("user", user);
-         
-                if(rememberMe != null){
-                    Cookie cookie = new Cookie("GRZUser",user.getUsername());
-                    cookie.setMaxAge(60*60);
-                    response.addCookie(cookie);
-                  
-                }
-                response.sendRedirect(GRZConstant.HOME_PAGE);
-            }else{
-                String errorTxt = "err=Username atau password salah";
-                errorHandler(GRZConstant.HOME_PAGE,errorTxt , response);
-            }
-        } catch (Exception ex) {
-            Logger.getLogger(GRZUser.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+    }
+   
+    protected void errorHandler(String redirectPage, String err, HttpServletResponse response) throws IOException{
+        response.sendRedirect(redirectPage + "?" + err);
     }
     
-    private void increaseUserCount(ServletContext app){
-        int userCount = Integer.parseInt(app.getAttribute("userCount").toString());
-        userCount ++;
-        app.setAttribute("userCount",userCount);
+    protected void failedTransactionErrorHandler(String page, HttpServletResponse response) throws IOException{
+        errorHandler(page, "err=Connection Timeout", response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

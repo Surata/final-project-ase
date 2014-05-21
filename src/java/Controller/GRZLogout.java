@@ -4,6 +4,8 @@
  */
 package Controller;
 
+import BaseClass.GRZBaseController;
+import Constants.GRZConstant;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletContext;
@@ -14,7 +16,7 @@ import javax.servlet.http.*;
  *
  * @author edista
  */
-public class GRZLogout extends HttpServlet {
+public class GRZLogout extends GRZBaseController {
 
     /**
      * Processes requests for both HTTP
@@ -26,6 +28,7 @@ public class GRZLogout extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
@@ -47,11 +50,12 @@ public class GRZLogout extends HttpServlet {
             session.removeAttribute("user");
             decreaseUserCount(getServletContext());
             
-            response.sendRedirect("index.jsp");
+            response.sendRedirect(GRZConstant.HOME_PAGE);
         }else {
-            response.sendRedirect("index.jsp");
+            response.sendRedirect(GRZConstant.HOME_PAGE);
         }
     }
+    
     private void decreaseUserCount(ServletContext app){
         int userCount = Integer.parseInt(app.getAttribute("userCount").toString());
         userCount --;

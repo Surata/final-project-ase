@@ -22,7 +22,11 @@
     </servlet>
     <servlet>
         <servlet-name>GRZValidationUtil</servlet-name>
-        <servlet-class>Controller.GRZValidationUtil</servlet-class>
+        <servlet-class>Helper.GRZValidationUtil</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GRZBaseController</servlet-name>
+        <servlet-class>BaseClass.GRZBaseController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>GRZLogin</servlet-name>
@@ -47,6 +51,10 @@
     <servlet-mapping>
         <servlet-name>GRZValidationUtil</servlet-name>
         <url-pattern>/GRZValidationUtil</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GRZBaseController</servlet-name>
+        <url-pattern>/GRZBaseController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

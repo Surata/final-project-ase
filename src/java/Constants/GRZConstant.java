@@ -10,6 +10,13 @@ package Constants;
  */
 public class GRZConstant {
     
+    public static String PRODUCT_ADD_PAGE = "GRZInserProduct.jsp";
+    public static String PRODUCT_LIST_PAGE = "GRZProduct.jsp";
+    
+    public static String HOME_PAGE = "index.jsp";
+    
+    public static String USER_ADD_PAGE = "GRZRegister.jsp";
+    
     //GRZUser
     //Query for user
     public static String USER_SELECT_ALL_QUERY = "from GRZUser";

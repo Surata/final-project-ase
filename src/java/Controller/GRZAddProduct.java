@@ -4,7 +4,10 @@
  */
 package Controller;
 
+import Helper.GRZValidationUtil;
+import BaseClass.GRZBaseController;
 import Bean.GRZProduct;
+import Constants.GRZConstant;
 import Services.GRZProductService;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -17,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author edista
  */
-public class GRZAddProduct extends HttpServlet {
+public class GRZAddProduct extends GRZBaseController {
 
     /**
      * Processes requests for both HTTP
@@ -29,6 +32,7 @@ public class GRZAddProduct extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String name = request.getParameter("nameTxt");
@@ -61,21 +65,18 @@ public class GRZAddProduct extends HttpServlet {
         }
         
         if(errorText.equals("")){
-            GRZProductService productService = new GRZProductService();
             
-            productService.insert(name, desc, Float.parseFloat(price), "Image/"+imageURL);
-        
-            response.sendRedirect("GRZProduct.jsp");
+            Boolean success = GRZProductService.insert(name, desc, Float.parseFloat(price), "Image/"+imageURL);
+            if(success){
+                response.sendRedirect(GRZConstant.PRODUCT_LIST_PAGE);
+            }else{
+                failedTransactionErrorHandler(GRZConstant.PRODUCT_ADD_PAGE, response);
+            }
         }else{
-            errorHandler(errorText, response);
+            errorHandler(GRZConstant.PRODUCT_ADD_PAGE, errorText, response);
         }
         
-    }
-    private void errorHandler(String err, HttpServletResponse response) throws IOException{
-        response.sendRedirect("GRZInsertProduct.jsp?"+ err);
-    }
-    
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    }  // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP
      * <code>GET</code> method.

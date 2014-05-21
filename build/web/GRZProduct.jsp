@@ -6,7 +6,7 @@
 
 <%@page import="java.util.List"%>
 <%@page import="Services.GRZProductService"%>
-<%@page import="Controller.GRZAuthentication"%>
+<%@page import="Helper.GRZAuthentication"%>
 <%@page import="Bean.GRZProduct"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
@@ -17,7 +17,8 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <link href="CSS/GRZStyle.css" rel="stylesheet"/>
+        <title>Product Page</title>
     </head>
     <body>
         <%@include file="GRZHeader.jsp" %>
@@ -54,6 +55,6 @@
                 %>
             </div>
         </div>
-        <%@include file="GRZFooter.html" %>
+        <%@include file="GRZFooter.jsp" %>
     </body>
 </html>
