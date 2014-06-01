@@ -93,7 +93,6 @@ public class GRZRegisterUser extends GRZBaseController {
         }
         
         if(errorText.equals("")){
-            try{
                 GRZUserService.insert(username,
                                     password, 
                                     name, 
@@ -103,9 +102,7 @@ public class GRZRegisterUser extends GRZBaseController {
                                     status);
             
                 response.sendRedirect(GRZConstant.HOME_PAGE);
-            }catch(Exception e){
-                failedTransactionErrorHandler(response);
-            }
+          
         }else{
             errorHandler(GRZConstant.USER_ADD_PAGE ,errorText, response);
         }

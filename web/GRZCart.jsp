@@ -14,7 +14,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     GRZAuthentication auth = new GRZAuthentication();
-    auth.checkUser(request.getSession(), response);
+    auth.allowMember(request.getSession(), response);
 %>
 <!DOCTYPE html>
 <html>

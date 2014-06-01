@@ -30,13 +30,13 @@ public class GRZUserService extends GRZService {
                                    phone, 
                                    address, 
                                    status);
-        try{
+        //try{
             tr.begin();
             sess.save(user);
             tr.commit();
-        }catch(Exception e){
-            tr.rollback();
-        }
+       // }catch(Exception e){
+        //    tr.rollback();
+        //}
     }
     
     public static List selectAll(){

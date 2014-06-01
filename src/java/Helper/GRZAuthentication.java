@@ -26,7 +26,7 @@ public class GRZAuthentication {
     public GRZAuthentication() {
     }
     
-    public void checkUser(HttpSession session, HttpServletResponse response) throws IOException{
+    public void onlyAdmin(HttpSession session, HttpServletResponse response) throws IOException{
         if(session.getAttribute("user") == null){
             response.sendRedirect(GRZConstant.HOME_PAGE);
         }else{
@@ -34,6 +34,12 @@ public class GRZAuthentication {
             if(currentUser.getStatus().equals("member")){
                 response.sendRedirect(GRZConstant.HOME_PAGE);
             }
+        }
+    }
+    
+    public void allowMember(HttpSession session, HttpServletResponse response) throws IOException{
+        if(session.getAttribute("user") == null){
+            response.sendRedirect(GRZConstant.HOME_PAGE);
         }
     }
     
