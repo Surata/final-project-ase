@@ -2,20 +2,25 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package BaseClass;
+package Controller;
 
+import BaseClass.GRZBaseController;
+import Bean.GRZUser;
+import Constants.GRZConstant;
+import Services.GRZOrderService;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author edista
  */
-public class GRZBaseController extends HttpServlet {
+public class GRZDeleteOrder extends GRZBaseController {
 
     /**
      * Processes requests for both HTTP
@@ -27,18 +32,27 @@ public class GRZBaseController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-    }
-   
-    protected void errorHandler(String redirectPage, String err, HttpServletResponse response) throws IOException{
-        response.sendRedirect(redirectPage + "?" + err);
-    }
-    
-    protected void failedTransactionErrorHandler(HttpServletResponse response) throws IOException{
-        errorHandler("GRZErrorPage.jsp", "err=Connection Timeout", response);
+        int id = Integer.parseInt(request.getParameter("id"));
+        if(id == 0){
+            try{
+                HttpSession session = request.getSession();
+                GRZUser currentUser = (GRZUser)session.getAttribute("user");
+                GRZOrderService.deleteAllWithUser(currentUser.getUserID());
+                response.sendRedirect(GRZConstant.CART_PAGE + "?easd");
+            }catch(Exception e){
+                response.sendRedirect(GRZConstant.CART_PAGE + "?error");
+            }
+        }else{
+            try{
+                GRZOrderService.delete(id);
+                response.sendRedirect(GRZConstant.CART_PAGE);
+            }catch(Exception e){
+                response.sendRedirect(GRZConstant.CART_PAGE + "?error");
+            }
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

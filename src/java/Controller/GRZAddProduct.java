@@ -65,12 +65,11 @@ public class GRZAddProduct extends GRZBaseController {
         }
         
         if(errorText.equals("")){
-            
-            Boolean success = GRZProductService.insert(name, desc, Float.parseFloat(price), "Image/"+imageURL);
-            if(success){
+            try{
+                GRZProductService.insert(name, desc, Float.parseFloat(price), "Image/"+imageURL);
                 response.sendRedirect(GRZConstant.PRODUCT_LIST_PAGE);
-            }else{
-                failedTransactionErrorHandler(GRZConstant.PRODUCT_ADD_PAGE, response);
+            }catch(Exception e){
+                failedTransactionErrorHandler(response);
             }
         }else{
             errorHandler(GRZConstant.PRODUCT_ADD_PAGE, errorText, response);

@@ -14,7 +14,7 @@ import java.util.List;
  * @author edista
  */
 public class GRZProductService extends GRZService {
-    public static Boolean insert(String name,
+    public static void insert(String name,
                        String description,
                        float price,
                        String image){
@@ -24,16 +24,23 @@ public class GRZProductService extends GRZService {
             tr.begin();
             sess.save(product);
             tr.commit();
-            return true;
         }catch(Exception e){
             tr.rollback();
-            return false;
         }
     }
     
     public static List selectAll(){
         results = getListFromQuery(GRZConstant.PRODUCT_SELECT_ALL_QUERY);
         return results;
+    }
+    
+    public static GRZProduct select(int id){
+        results = getListFromQuery(GRZConstant.PRODUCT_SELECT_WITH_ID_QUERY(id));
+        if(results.size()>0){
+            GRZProduct product = (GRZProduct)results.get(0);
+            return product;
+        }
+        return null;
     }
     
     public static List selectWithPrice(int priceRange){

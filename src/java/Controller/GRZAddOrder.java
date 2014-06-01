@@ -2,20 +2,27 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package BaseClass;
+package Controller;
 
+import BaseClass.GRZBaseController;
+import Bean.GRZProduct;
+import Bean.GRZUser;
+import Constants.GRZConstant;
+import Services.GRZOrderService;
+import Services.GRZProductService;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author edista
  */
-public class GRZBaseController extends HttpServlet {
+public class GRZAddOrder extends GRZBaseController {
 
     /**
      * Processes requests for both HTTP
@@ -27,18 +34,27 @@ public class GRZBaseController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-    }
-   
-    protected void errorHandler(String redirectPage, String err, HttpServletResponse response) throws IOException{
-        response.sendRedirect(redirectPage + "?" + err);
+        int productID = Integer.parseInt(request.getParameter("productID"));
+        int quantity = Integer.parseInt(request.getParameter("quantityInput"));
+        int transactionID = Integer.parseInt(request.getParameter("transactionID"));
+        float price = Float.parseFloat(request.getParameter("price"));
+        float subTotal = calculateSubTotal(quantity, price);
+        
+        try{
+            GRZOrderService.insert(productID, quantity, subTotal, transactionID);
+            response.sendRedirect(GRZConstant.ORDER_PAGE);
+        }catch(Exception e){
+            failedTransactionErrorHandler(response);
+        }
     }
     
-    protected void failedTransactionErrorHandler(HttpServletResponse response) throws IOException{
-        errorHandler("GRZErrorPage.jsp", "err=Connection Timeout", response);
+    private float calculateSubTotal(int qty, float price){
+        float subTotal = qty * price;
+        return subTotal;
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

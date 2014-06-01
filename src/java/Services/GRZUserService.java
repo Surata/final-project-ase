@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class GRZUserService extends GRZService {
 
-    public static Boolean insert(String username,
+    public static void insert(String username,
                               String password,
                               String name,
                               String email,
@@ -34,10 +34,8 @@ public class GRZUserService extends GRZService {
             tr.begin();
             sess.save(user);
             tr.commit();
-            return true;
         }catch(Exception e){
             tr.rollback();
-            return false;
         }
     }
     

@@ -28,6 +28,18 @@
         <servlet-name>GRZBaseController</servlet-name>
         <servlet-class>BaseClass.GRZBaseController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>GRZAddOrder</servlet-name>
+        <servlet-class>Controller.GRZAddOrder</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GRZDeleteOrder</servlet-name>
+        <servlet-class>Controller.GRZDeleteOrder</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GRZAddTransaction</servlet-name>
+        <servlet-class>Controller.GRZAddTransaction</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>GRZLogin</servlet-name>
         <url-pattern>/GRZLogin</url-pattern>
@@ -55,6 +67,18 @@
     <servlet-mapping>
         <servlet-name>GRZBaseController</servlet-name>
         <url-pattern>/GRZBaseController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GRZAddOrder</servlet-name>
+        <url-pattern>/GRZAddOrder</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GRZDeleteOrder</servlet-name>
+        <url-pattern>/GRZDeleteOrder</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GRZAddTransaction</servlet-name>
+        <url-pattern>/GRZAddTransaction</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

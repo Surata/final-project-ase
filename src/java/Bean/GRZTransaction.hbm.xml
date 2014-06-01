@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="Bean.GRZTransaction" table="transaction">
+    <id column="ID" name="transactionID" type="integer">
+      <generator class="increment"/>
+    </id>
+    <property column="UserID" name="userID" type="integer"></property>
+    <property column="Status" name="status" type="integer"></property>
+    <property column="Total" name="total" type="float"></property>
+    <property column="Date" name="date" type="string"></property>
+  </class>
+</hibernate-mapping>

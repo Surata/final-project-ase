@@ -39,11 +39,10 @@ public class GRZLogin extends GRZBaseController {
         String username = request.getParameter("usernameTxt");
         String password = request.getParameter("passwordTxt");
         String[] rememberMe = request.getParameterValues("rememberMeChk");
-        
         ServletContext app = getServletContext();
         GRZUser user = GRZUserService.select(username, password);
-        
         try {
+            
             if(user != null){
                 if(app.getAttribute("userCount") == null){
                     app.setAttribute("userCount", 1);
@@ -53,12 +52,11 @@ public class GRZLogin extends GRZBaseController {
                 
                 HttpSession session = request.getSession();
                 session.setAttribute("user", user);
-         
                 if(rememberMe != null){
                     Cookie cookie = new Cookie("GRZUser",user.getUsername());
-                    cookie.setMaxAge(60*60);
+                    cookie.setMaxAge(3600*60*12);
                     response.addCookie(cookie);
-                  
+                    
                 }
                 response.sendRedirect(GRZConstant.HOME_PAGE);
             }else{
@@ -67,6 +65,7 @@ public class GRZLogin extends GRZBaseController {
             }
         } catch (Exception ex) {
             Logger.getLogger(GRZUser.class.getName()).log(Level.SEVERE, null, ex);
+            failedTransactionErrorHandler(response);
         }
     }
     

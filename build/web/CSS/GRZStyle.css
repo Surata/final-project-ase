@@ -101,6 +101,9 @@
     display: inline;
     list-style-type: none;
     padding-right: 20px;
+    font-family: sans-serif;
+    color:gray;
+    font-size:20px;
 }
 
 .headerBar #navigationBar a {
@@ -524,4 +527,34 @@
     width: 100px;
     text-align: center;
     height: 35px;
+}
+
+/* Order Page */
+
+.orderDiv{
+    width: 800px;
+    overflow: auto;
+    margin:100px auto 10px auto;
+    background-color: white;
+    text-align: center;
+}
+
+.orderDiv table {
+    margin:10px auto 10px 50px;
+    text-align: left;
+}
+
+.orderDiv table td{
+    height: 25px;
+}
+
+/*Cart Page*/
+
+
+.cartDiv{
+    width: 800px;
+    overflow: auto;
+    margin:100px auto 10px auto;
+    background-color: white;
+    text-align: center;
 }

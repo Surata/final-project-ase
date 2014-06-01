@@ -93,17 +93,18 @@ public class GRZRegisterUser extends GRZBaseController {
         }
         
         if(errorText.equals("")){
-            Boolean success = GRZUserService.insert(username,
-                                                    password, 
-                                                    name, 
-                                                    email, 
-                                                    phone, 
-                                                    address, 
-                                                    status);
-            if(success){
+            try{
+                GRZUserService.insert(username,
+                                    password, 
+                                    name, 
+                                    email, 
+                                    phone, 
+                                    address, 
+                                    status);
+            
                 response.sendRedirect(GRZConstant.HOME_PAGE);
-            }else{
-                failedTransactionErrorHandler(GRZConstant.USER_ADD_PAGE, response);
+            }catch(Exception e){
+                failedTransactionErrorHandler(response);
             }
         }else{
             errorHandler(GRZConstant.USER_ADD_PAGE ,errorText, response);

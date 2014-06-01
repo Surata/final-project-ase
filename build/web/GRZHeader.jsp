@@ -4,6 +4,7 @@
     Author     : edista
 --%>
 
+<%@page import="Constants.GRZConstant"%>
 <%@page import="Helper.GRZAuthentication"%>
 <%@page import="Helper.GRZAuthentication"%>
 <%@page import="Bean.GRZUser"%>
@@ -17,23 +18,38 @@
 
         <div id="navigationBar">
         <ul>
-            <li><a href="./index.jsp">Home</a></li>
-            <li><a href="./GRZMenu.jsp">Menu</a></li>
+            <li><a href="./<%= GRZConstant.HOME_PAGE %>">Home</a></li>
+            <li><a href="./<%= GRZConstant.MENU_PAGE %>">Menu</a></li>
+            
             <%
                 GRZAuthentication authCookie = new GRZAuthentication();
                 authCookie.checkCookie(getServletContext(), request.getSession(), request);
                 if(session.getAttribute("user") != null){
-
+                    %>
+                    <li><a href="">Track</a></li>
+                    <li><a href="<%= GRZConstant.ORDER_PAGE %>">Order</a></li>
+                    <li><a href="<%= GRZConstant.CART_PAGE %>">Cart</a></li>
+                    <%
                     GRZUser user = (GRZUser)session.getAttribute("user");
                     String status = user.getStatus();
                     if(status.equals("admin")){
             %>
-                    <li><a href="./GRZCustomer.jsp">Customer</a></li>
-                    <li><a href="./GRZProduct.jsp">Product</a></li>
+                    <li><a href="./<%= GRZConstant.CUSTOMER_PAGE %>">Customer</a></li>
+                    <li><a href="./<%= GRZConstant.PRODUCT_LIST_PAGE %>">Product</a></li>
+                    <li><a href="">Transaction</a></li>
             <%
                     }
+                }else{
+                    %>
+                   
+                    <li>Track</li>
+                    <li>Order</li>
+                    <li>Cart</li>
+                    
+                     <%
                 }
             %>
+            
         </ul>
         </div>
     </div>

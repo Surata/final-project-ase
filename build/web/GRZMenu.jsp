@@ -84,7 +84,7 @@
                         <table>
                             <tr>
                                 <td style="width: 170px; color: red;"><%= product.getName() %></td>
-                                <td style="width: 80px; text-align: right;">Rp. <%= product.getPrice() %></td>
+                                <td style="width: 80px; text-align: right;">Rp. <%= String.format("%.0f",product.getPrice()) %></td>
                             </tr>
                         </table>
                     </div>

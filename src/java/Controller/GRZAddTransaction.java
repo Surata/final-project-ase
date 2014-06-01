@@ -2,10 +2,17 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package BaseClass;
+package Controller;
 
+import BaseClass.GRZBaseController;
+import Bean.GRZTransaction;
+import Constants.GRZConstant;
+import Helper.GRZApplicationHelper;
+import Services.GRZOrderService;
+import Services.GRZTransactionService;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author edista
  */
-public class GRZBaseController extends HttpServlet {
+public class GRZAddTransaction extends GRZBaseController {
 
     /**
      * Processes requests for both HTTP
@@ -27,18 +34,21 @@ public class GRZBaseController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-    }
-   
-    protected void errorHandler(String redirectPage, String err, HttpServletResponse response) throws IOException{
-        response.sendRedirect(redirectPage + "?" + err);
-    }
-    
-    protected void failedTransactionErrorHandler(HttpServletResponse response) throws IOException{
-        errorHandler("GRZErrorPage.jsp", "err=Connection Timeout", response);
+        float total = Float.parseFloat(request.getParameter("total"));
+        int userID = GRZApplicationHelper.getCurrentUser(request).getUserID();
+        String date = GRZApplicationHelper.getDate();
+
+        try{
+            GRZTransactionService.update(userID, total, 1, date);
+            response.sendRedirect(GRZConstant.CART_PAGE);
+        }catch(Exception e){
+            
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

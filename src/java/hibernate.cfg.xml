@@ -10,6 +10,6 @@
     <mapping resource="Bean/GRZProduct.hbm.xml"/>
     <mapping resource="Bean/GRZUser.hbm.xml"/>
     <mapping resource="Bean/GRZOrder.hbm.xml"/>
-    <mapping resource="Bean/GRZCart.hbm.xml"/>
+    <mapping resource="Bean/GRZTransaction.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

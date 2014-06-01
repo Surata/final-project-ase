@@ -8,14 +8,21 @@ package Bean;
  *
  * @author edista
  */
-public class GRZCart {
-    private int cartID;
+public class GRZTransaction {
+    private int transactionID;
     private int userID;
     private float total;
     private int status;
     private String date;
 
-    public GRZCart() {
+    public GRZTransaction() {
+    }
+
+    public GRZTransaction(int userID, float total, int status, String date) {
+        this.userID = userID;
+        this.total = total;
+        this.status = status;
+        this.date = date;
     }
 
     public int getUserID() {
@@ -26,12 +33,12 @@ public class GRZCart {
         this.userID = userID;
     }
 
-    public int getCartID() {
-        return cartID;
+    public int getTransactionID() {
+        return transactionID;
     }
 
-    public void setCartID(int cartID) {
-        this.cartID = cartID;
+    public void setTransactionID(int cartID) {
+        this.transactionID = cartID;
     }
 
     public String getDate() {
@@ -58,5 +65,7 @@ public class GRZCart {
         this.total = total;
     }
     
-    
+    public void addToTotal(float subTotal){
+        this.total += subTotal;
+    }
 }

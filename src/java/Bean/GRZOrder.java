@@ -4,35 +4,45 @@
  */
 package Bean;
 
+import Services.GRZOrderService;
+
 /**
  *
  * @author edista
  */
 public class GRZOrder {
     private int orderID;
-    private int cartID;
+    private int transactionID;
     private int productID;
     private int quantity;
     private float subTotal;
-    private String date;
+    
+    private GRZProduct product;
 
     public GRZOrder() {
     }
 
-    public int getCartID() {
-        return cartID;
+    public GRZProduct getProduct() {
+        return product;
+    }
+    
+    public void setProduct(GRZProduct product){
+        this.product = product;
     }
 
-    public void setCartID(int cartID) {
-        this.cartID = cartID;
+    public GRZOrder(int productID, int quantity, float subTotal, int transactionID) {
+        this.productID = productID;
+        this.quantity = quantity;
+        this.subTotal = subTotal;
+        this.transactionID = transactionID;
     }
 
-    public String getDate() {
-        return date;
+    public int getTransactionID() {
+        return transactionID;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setTransactionID(int cartID) {
+        this.transactionID = cartID;
     }
 
     public int getOrderID() {
