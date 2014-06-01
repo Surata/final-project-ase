@@ -35,6 +35,11 @@ public class GRZOrderService extends GRZService{
         return null;
     }
     
+    public static List selectWithTransactionID(int transactionID){
+        results = getListFromQuery(GRZConstant.ORDER_SELECT_WITH_TRANSACTION(transactionID));
+        return results;
+    }
+    
     public static List selectWithUserID(int userID){
         results = getListFromQuery(GRZConstant.ORDER_SELECT_WITH_USER(userID));
         return results;

@@ -26,7 +26,7 @@
                 authCookie.checkCookie(getServletContext(), request.getSession(), request);
                 if(session.getAttribute("user") != null){
                     %>
-                    <li><a href="">Track</a></li>
+                    <li><a href="<%= GRZConstant.TRACK_PAGE %>">Track</li>
                     <li><a href="<%= GRZConstant.ORDER_PAGE %>">Order</a></li>
                     <li><a href="<%= GRZConstant.CART_PAGE %>">Cart</a></li>
                     <%

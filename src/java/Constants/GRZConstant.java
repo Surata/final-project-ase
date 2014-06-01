@@ -18,6 +18,7 @@ public class GRZConstant {
     public static String MENU_PAGE = "GRZMenu.jsp";
     public static String ORDER_PAGE = "GRZOrder.jsp";
     public static String CART_PAGE = "GRZCart.jsp";
+    public static String TRACK_PAGE = "GRZTrack.jsp";
     
     //GRZUser
     //Query for user
@@ -64,10 +65,16 @@ public class GRZConstant {
         return "delete from GRZOrder where userID=" +userID;
     }
     
+    public static String ORDER_SELECT_WITH_TRANSACTION(int transactionID){
+        return "from GRZOrder where transactionID =" +transactionID;
+    }
+    
     //Transaction
     
     public static String TRANSACTION_SELECT_WITH_USER(int userID){
         return "from GRZTransaction where userID="+ userID + "and status=0";
     }
-    public static String TRANSACTION_SELECT_ALL = "from GRZTransaction";
+    public static String TRANSACTION_SELECT_WITH_USERID(int userID){
+        return "from GRZTransaction where userID=" + userID + "and status > 0";
+    }
 }

@@ -42,6 +42,11 @@ public class GRZTransactionService extends GRZService{
         }
     }
     
+    public static List select(int userID){
+        results = getListFromQuery(GRZConstant.TRANSACTION_SELECT_WITH_USERID(userID));
+        return results;
+    }
+    
     public static GRZTransaction selectLastTransactionID(int userID){
         results = getListFromQuery(GRZConstant.TRANSACTION_SELECT_WITH_USER(userID) );
         if(results.size()>0){
@@ -49,14 +54,5 @@ public class GRZTransactionService extends GRZService{
             return transaction;
         }
         return null;
-    }
-    
-    public static int getLastTransactionID(){
-        results = getListFromQuery(GRZConstant.TRANSACTION_SELECT_ALL);
-        if(results.size()>0){
-            int lastIndex = results.size();
-            return lastIndex;
-        }
-        return 0;
     }
 }

@@ -558,3 +558,13 @@
     background-color: white;
     text-align: center;
 }
+
+/*Track Page*/
+
+.trackDiv{
+    width: 800px;
+    overflow: auto;
+    margin:100px auto 10px auto;
+    background-color: white;
+    text-align: center;
+}
