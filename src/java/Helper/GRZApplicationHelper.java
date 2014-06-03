@@ -6,7 +6,7 @@ package Helper;
 
 import Bean.GRZTransaction;
 import Bean.GRZUser;
-import Services.GRZTransactionService;
+import Services.GRZService;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import javax.servlet.http.HttpServletRequest;
@@ -28,13 +28,5 @@ public class GRZApplicationHelper {
         return time;
     }
     
-    public static GRZTransaction getLastTransactionWithUserID(int userID){
-        GRZTransaction transaction = GRZTransactionService.selectLastTransactionID(userID);
-        int transactionID;
-        if(transaction == null){
-            GRZTransactionService.insert(userID, 0, 0, "");
-            transaction = GRZTransactionService.selectLastTransactionID(userID);
-        }
-        return transaction;        
-    }
+    public static GRZService appService = new GRZService();
 }

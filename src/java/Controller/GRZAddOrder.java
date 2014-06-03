@@ -8,8 +8,6 @@ import BaseClass.GRZBaseController;
 import Bean.GRZProduct;
 import Bean.GRZUser;
 import Constants.GRZConstant;
-import Services.GRZOrderService;
-import Services.GRZProductService;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -44,12 +42,9 @@ public class GRZAddOrder extends GRZBaseController {
         float price = Float.parseFloat(request.getParameter("price"));
         float subTotal = calculateSubTotal(quantity, price);
         
-        try{
-            GRZOrderService.insert(productID, quantity, subTotal, transactionID);
+        Boolean success = service.setOrder(productID, quantity, subTotal, transactionID);
+        if(success)
             response.sendRedirect(GRZConstant.ORDER_PAGE);
-        }catch(Exception e){
-            failedTransactionErrorHandler(response);
-        }
     }
     
     private float calculateSubTotal(int qty, float price){

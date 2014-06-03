@@ -4,8 +4,8 @@
     Author     : edista
 --%>
 
+<%@page import="Helper.GRZApplicationHelper"%>
 <%@page import="java.util.List"%>
-<%@page import="Services.GRZProductService"%>
 <%@page import="Helper.GRZAuthentication"%>
 <%@page import="Bean.GRZProduct"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -24,8 +24,7 @@
         <%@include file="GRZHeader.jsp" %>
         <div class="outer">
              <%
-                GRZProductService productService = new GRZProductService();
-                List products = productService.selectAll();
+                List products = GRZApplicationHelper.appService.getAllProduct();
 
                 int count = products.size();
                 

@@ -8,7 +8,6 @@ import Helper.GRZValidationUtil;
 import BaseClass.GRZBaseController;
 import Bean.GRZProduct;
 import Constants.GRZConstant;
-import Services.GRZProductService;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -65,12 +64,12 @@ public class GRZAddProduct extends GRZBaseController {
         }
         
         if(errorText.equals("")){
-            try{
-                GRZProductService.insert(name, desc, Float.parseFloat(price), "Image/"+imageURL);
-                response.sendRedirect(GRZConstant.PRODUCT_LIST_PAGE);
-            }catch(Exception e){
-                failedTransactionErrorHandler(response);
-            }
+           
+           Boolean success = service.setProduct(name, desc, Float.parseFloat(price), "Image/"+imageURL);
+                
+           if(success) 
+               response.sendRedirect(GRZConstant.PRODUCT_LIST_PAGE);
+            
         }else{
             errorHandler(GRZConstant.PRODUCT_ADD_PAGE, errorText, response);
         }

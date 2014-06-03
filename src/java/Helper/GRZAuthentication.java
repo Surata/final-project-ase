@@ -6,7 +6,7 @@ package Helper;
 
 import Bean.GRZUser;
 import Constants.GRZConstant;
-import Services.GRZUserService;
+import Services.GRZService;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -50,7 +50,8 @@ public class GRZAuthentication {
             for(int i=0; i<cookies.length ;i++){
                 cookie = cookies[i];
                 if(cookie.getName().equals("GRZUser")){
-                    GRZUser user = GRZUserService.selectWithUsername(cookie.getValue());
+                    GRZService service = new GRZService(); 
+                    GRZUser user = service.selectWithUsername(cookie.getValue());
                     if(user != null){
                         session.setAttribute("user", user);
                     }

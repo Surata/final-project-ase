@@ -7,7 +7,6 @@ package Controller;
 import BaseClass.GRZBaseController;
 import Bean.GRZUser;
 import Constants.GRZConstant;
-import Services.GRZUserService;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -40,9 +39,9 @@ public class GRZLogin extends GRZBaseController {
         String password = request.getParameter("passwordTxt");
         String[] rememberMe = request.getParameterValues("rememberMeChk");
         ServletContext app = getServletContext();
-        GRZUser user = GRZUserService.select(username, password);
+        
+        GRZUser user = service.loginUser(username, password);
         try {
-            
             if(user != null){
                 if(app.getAttribute("userCount") == null){
                     app.setAttribute("userCount", 1);

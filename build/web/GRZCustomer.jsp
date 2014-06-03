@@ -4,9 +4,9 @@
     Author     : edista
 --%>
 
+<%@page import="Helper.GRZApplicationHelper"%>
 <%@page import="Bean.GRZUser"%>
 <%@page import="java.util.List"%>
-<%@page import="Services.GRZUserService"%>
 <%@page import="Helper.GRZAuthentication"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
@@ -26,8 +26,7 @@
             <div class="customerList">
                 <h1>Customer List</h1>
                 <%
-                GRZUserService userService = new GRZUserService();
-                List users = userService.selectAll();
+                List users = GRZApplicationHelper.appService.getAllUser();
 
                 for(int i=0; i<users.size();i++){
                     GRZUser user = (GRZUser)users.get(i);

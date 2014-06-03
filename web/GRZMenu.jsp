@@ -4,9 +4,9 @@
     Author     : edista
 --%>
 
+<%@page import="Helper.GRZApplicationHelper"%>
 <%@page import="java.util.List"%>
 <%@page import="Bean.GRZProduct"%>
-<%@page import="Services.GRZProductService"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -48,17 +48,15 @@
                 </div>
                 <div class="itemList">
                     <%
-                    
-                    GRZProductService productService = new GRZProductService();
                     List products;
                     if(searchTxt != null && filter != null){
-                        products = productService.selectWithNameAndPrice(searchTxt, Integer.parseInt(filter));
+                        products = GRZApplicationHelper.appService.searchProdcutWithNameAndPriceKey(searchTxt, Integer.parseInt(filter));
                     }else if(searchTxt!= null){
-                        products = productService.selectWithNameLike(searchTxt);
+                        products = GRZApplicationHelper.appService.searchProductWithNameKey(searchTxt);
                     }else if(filter != null){
-                        products = productService.selectWithPrice(Integer.parseInt(filter));
+                        products = GRZApplicationHelper.appService.getProductForPriceRange(Integer.parseInt(filter));
                     }else{
-                        products = productService.selectAll();
+                        products = GRZApplicationHelper.appService.getAllProduct();
                     }
 
                     int pageCount = 0;

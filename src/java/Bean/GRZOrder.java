@@ -4,8 +4,6 @@
  */
 package Bean;
 
-import Services.GRZOrderService;
-
 /**
  *
  * @author edista
@@ -16,18 +14,8 @@ public class GRZOrder {
     private int productID;
     private int quantity;
     private float subTotal;
-    
-    private GRZProduct product;
 
     public GRZOrder() {
-    }
-
-    public GRZProduct getProduct() {
-        return product;
-    }
-    
-    public void setProduct(GRZProduct product){
-        this.product = product;
     }
 
     public GRZOrder(int productID, int quantity, float subTotal, int transactionID) {

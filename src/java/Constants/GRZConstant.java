@@ -61,8 +61,13 @@ public class GRZConstant {
         return "from GRZOrder where id =" + id;
     }
     
-    public static String ORDER_DELETE_ALL_WITH_USER(int userID){
-        return "delete from GRZOrder where userID=" +userID;
+    public static String ORDER_DELETE(int id){
+        return "delete from GRZOrder where id =" + id;
+    }
+    
+    public static String ORDER_DELETE_ALL_WITH_USER_ID(int userID){
+        return "delete from GRZOrder where transactionID = "
+                + "(SELECT transactionID from GRZTransaction where status = 0 and userID =" + userID +")";
     }
     
     public static String ORDER_SELECT_WITH_TRANSACTION(int transactionID){
@@ -74,7 +79,7 @@ public class GRZConstant {
     public static String TRANSACTION_SELECT_WITH_USER(int userID){
         return "from GRZTransaction where userID="+ userID + "and status=0";
     }
-    public static String TRANSACTION_SELECT_WITH_USERID(int userID){
+    public static String TRANSACTION_SELECT_ALL_WITH_USER(int userID){
         return "from GRZTransaction where userID=" + userID + "and status > 0";
     }
 }

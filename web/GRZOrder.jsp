@@ -8,7 +8,6 @@
 <%@page import="Helper.GRZApplicationHelper"%>
 <%@page import="Bean.GRZProduct"%>
 <%@page import="java.util.List"%>
-<%@page import="Services.GRZProductService"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     GRZAuthentication auth = new GRZAuthentication();
@@ -31,9 +30,9 @@
                 <h1>Available Product(s)</h1>
                 <div>
                     <%
-                        List products = GRZProductService.selectAll();
+                        List products = GRZApplicationHelper.appService.getAllProduct();
                         int userID = GRZApplicationHelper.getCurrentUser(request).getUserID();
-                        GRZTransaction transaction = GRZApplicationHelper.getLastTransactionWithUserID(userID);
+                        GRZTransaction transaction = GRZApplicationHelper.appService.getLastTransactionWithUserId(userID);
                     %>
                     <%
                         for(int i =0;i<products.size();i++){

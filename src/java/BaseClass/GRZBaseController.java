@@ -4,6 +4,7 @@
  */
 package BaseClass;
 
+import Services.GRZService;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -27,12 +28,18 @@ public class GRZBaseController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
+    protected GRZService service;
+    
+    public GRZBaseController() {
+        service = new GRZService();
+    }
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
+        
     }
-   
+    
     protected void errorHandler(String redirectPage, String err, HttpServletResponse response) throws IOException{
         response.sendRedirect(redirectPage + "?" + err);
     }

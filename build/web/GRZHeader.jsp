@@ -6,7 +6,6 @@
 
 <%@page import="Constants.GRZConstant"%>
 <%@page import="Helper.GRZAuthentication"%>
-<%@page import="Helper.GRZAuthentication"%>
 <%@page import="Bean.GRZUser"%>
 
 <div id="headerBarOuter">

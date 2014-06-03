@@ -5,13 +5,10 @@
 --%>
 
 <%@page import="Bean.GRZProduct"%>
-<%@page import="Services.GRZProductService"%>
 <%@page import="Bean.GRZOrder"%>
 <%@page import="Bean.GRZTransaction"%>
-<%@page import="Services.GRZOrderService"%>
 <%@page import="Helper.GRZApplicationHelper"%>
 <%@page import="java.util.List"%>
-<%@page import="Services.GRZTransactionService"%>
 <%@page import="Helper.GRZAuthentication"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
@@ -33,11 +30,10 @@
                 <h2>My Order</h2>
                 <%
                     GRZUser user = GRZApplicationHelper.getCurrentUser(request);
-                    
-                    List transactions = GRZTransactionService.select(user.getUserID());
+                    List transactions = GRZApplicationHelper.appService.getAllTransactionWithUserId(user.getUserID());
                     for(int i=0; i< transactions.size(); i++){
                         GRZTransaction transaction = (GRZTransaction)transactions.get(i);
-                        List orders = GRZOrderService.selectWithTransactionID(transaction.getTransactionID());
+                        List orders = GRZApplicationHelper.appService.getOrderWithTransactionId(transaction.getTransactionID());
                         int status = transaction.getStatus();
                         String statusDesc;
                         if(status == 1){
@@ -60,7 +56,7 @@
                                 <%
                                     for(int j=0; j<orders.size(); j++){
                                         GRZOrder order = (GRZOrder)orders.get(j);
-                                        GRZProduct product = GRZProductService.select(order.getProductID());
+                                        GRZProduct product = GRZApplicationHelper.appService.getProductWithId(order.getProductID());
                                         %>
                                         <tr>
                                             <td><%= product.getName() %></td>

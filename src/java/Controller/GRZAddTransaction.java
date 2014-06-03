@@ -8,8 +8,6 @@ import BaseClass.GRZBaseController;
 import Bean.GRZTransaction;
 import Constants.GRZConstant;
 import Helper.GRZApplicationHelper;
-import Services.GRZOrderService;
-import Services.GRZTransactionService;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -43,12 +41,9 @@ public class GRZAddTransaction extends GRZBaseController {
         int userID = GRZApplicationHelper.getCurrentUser(request).getUserID();
         String date = GRZApplicationHelper.getDate();
 
-        try{
-            GRZTransactionService.update(userID, total, 1, date);
+        Boolean success = service.changeTransaction(userID, total, 1, date);
+        if(success)
             response.sendRedirect(GRZConstant.CART_PAGE);
-        }catch(Exception e){
-            
-        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -7,7 +7,6 @@ package Controller;
 import BaseClass.GRZBaseController;
 import Constants.GRZConstant;
 import Helper.GRZValidationUtil;
-import Services.GRZUserService;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletContext;
@@ -93,14 +92,14 @@ public class GRZRegisterUser extends GRZBaseController {
         }
         
         if(errorText.equals("")){
-                GRZUserService.insert(username,
-                                    password, 
-                                    name, 
-                                    email, 
-                                    phone, 
-                                    address, 
-                                    status);
-            
+            Boolean success = service.setUser(username,
+                                                password, 
+                                                name, 
+                                                email, 
+                                                phone, 
+                                                address, 
+                                                status);
+            if(success)
                 response.sendRedirect(GRZConstant.HOME_PAGE);
           
         }else{

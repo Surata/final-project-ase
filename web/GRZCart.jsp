@@ -4,13 +4,12 @@
     Author     : edista
 --%>
 
+<%@page import="Bean.GRZProduct"%>
 <%@page import="Helper.GRZApplicationHelper"%>
 <%@page import="Bean.GRZTransaction"%>
 <%@page import="java.text.DecimalFormat"%>
-<%@page import="Services.GRZProductService"%>
 <%@page import="Bean.GRZOrder"%>
 <%@page import="java.util.List"%>
-<%@page import="Services.GRZOrderService"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     GRZAuthentication auth = new GRZAuthentication();
@@ -37,20 +36,20 @@
                     </tr>
                 <%
                 GRZUser user = GRZApplicationHelper.getCurrentUser(request);
-                List orders = GRZOrderService.selectWithUserID(user.getUserID());
+                List orders = GRZApplicationHelper.appService.getOrderWithUserId(user.getUserID());
                 float total = 0;
                 for(int i=0; i<orders.size(); i++){
                     GRZOrder order = (GRZOrder)orders.get(i);
-                    order.setProduct(GRZOrderService.product(order.getProductID()));
+                    GRZProduct product = GRZApplicationHelper.appService.getProductWithId(order.getProductID());
                     total += order.getSubTotal();
                 %>
                
                     <tr>
-                        <td><%= order.getProduct().getName() %></td>
-                        <td><%= String.format("%.0f", order.getProduct().getPrice())%></td>
+                        <td><%= product.getName() %></td>
+                        <td><%= String.format("%.0f", product.getPrice())%></td>
                         <td><%= order.getQuantity() %></td>
                         <td><%= String.format("%.0f", order.getSubTotal()) %></td>
-                        <td><a id="button" href="./GRZDeleteOrder?id=<%= total %>" style="height: 25px;">Delete Item</a></td>
+                        <td><a id="button" href="./GRZDeleteOrder?id=<%= order.getOrderID() %>" style="height: 25px;">Delete Item</a></td>
                     </tr>
                 
                 <%
