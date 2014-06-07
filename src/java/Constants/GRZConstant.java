@@ -19,6 +19,9 @@ public class GRZConstant {
     public static String ORDER_PAGE = "GRZOrder.jsp";
     public static String CART_PAGE = "GRZCart.jsp";
     public static String TRACK_PAGE = "GRZTrack.jsp";
+    public static String PRODUCT_UPDATE_PAGE = "GRZUpdateProduct.jsp";
+    public static String USER_UPDATE_PAGE = "GRZUpdateUser.jsp";
+    public static String TRANSACTION_PAGE = "GRZTransaction.jsp";
     
     //GRZUser
     //Query for user
@@ -33,21 +36,32 @@ public class GRZConstant {
         return "from GRZUser where username = '"+ username +"'";
     }
     
+    public static String USER_SELECT_LIKE(String key){
+        return "from GRZUser where username like '%" +key +"%'";
+    }
+    
+    public static String USER_DELETE_WITH_ID(int userID){
+        return "delete from GRZUser where id=" + userID;
+    }
+    
     
     //GRZProduct
     //Query for product
-    public static String PRODUCT_SELECT_ALL_QUERY = "from GRZProduct";
+    public static String PRODUCT_SELECT_ALL_QUERY = "from GRZProduct ORDER BY id DESC";
     public static String PRODUCT_SELECT_WITH_ID_QUERY(int id){
         return "from GRZProduct where id = " + id;
     }
     public static String PRODUCT_SELECT_WITH_PRICE_QUERY(float min, float max){
-        return "from GRZProduct where price between " + min + "and" + max;
+        return "from GRZProduct where price between " + min + "and" + max + "ORDER BY id DESC";
     }
     public static String PRODUCT_SELECT_WITH_NAME_LIKE_QUERY(String name){
-        return "from GRZProduct where name like '%" + name + "%'";
+        return "from GRZProduct where name like '%" + name + "%'" + "ORDER BY id DESC";
     }
     public static String PRODUCT_SELECT_WITH_NAME_AND_PRICE_QUERY(String name, float min, float max){
-        return "from GRZProduct where name like '%" + name + "%' and price between " + min + " and " + max;
+        return "from GRZProduct where name like '%" + name + "%' and price between " + min + " and " + max + "ORDER BY id DESC";
+    }
+    public static String PRODUCT_DELETE_WITH_ID(int productID){
+        return "delete from GRZProduct where id=" + productID;
     }
     
     //Order
@@ -76,6 +90,10 @@ public class GRZConstant {
     
     //Transaction
     
+    public static String TRANSACTION_SELECT_ALL = "from GRZTransaction where status > 0 ORDER BY id DESC";
+    public static String TRANSACTION_SELECT_WITH_ID(int id){
+        return "from GRZTransaction where transactionID =" +id;
+    }
     public static String TRANSACTION_SELECT_WITH_USER(int userID){
         return "from GRZTransaction where userID="+ userID + "and status=0";
     }

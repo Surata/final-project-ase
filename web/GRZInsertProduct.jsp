@@ -36,6 +36,7 @@
                             out.print("<div id='errorBox'>" + errName + "</div>");
                         }
                             %>
+                        </td>
                     </tr>
                     <tr>
                         <td><label>Description</label></td>
@@ -50,6 +51,7 @@
                             out.print("<div id='errorBox'>" + errDesc+ "</div>");
                         }
                             %>
+                        </td>
                     </tr>
                     <tr>
                         <td><lable>Price</label></td>
@@ -64,6 +66,7 @@
                             out.print("<div id='errorBox'>" + errPrice+ "</div>");
                         }
                             %>
+                        </td>
                     </tr>
                     <tr>
                         <td><label>Image</label></td>
@@ -89,6 +92,7 @@
                             out.print("<div id='errorBox'>" + errImage + "</div>");
                         }
                             %>
+                        </td>
                     </tr>
                     <tr>
                         <td></td>

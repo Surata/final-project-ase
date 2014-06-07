@@ -52,7 +52,7 @@ public class GRZAdapter {
             return true;
         }catch(Exception e){
             tr.rollback();
-            return true;
+            return false;
         }
     }
     

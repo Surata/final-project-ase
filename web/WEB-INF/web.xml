@@ -40,6 +40,38 @@
         <servlet-name>GRZAddTransaction</servlet-name>
         <servlet-class>Controller.GRZAddTransaction</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>GRZDeleteProduct</servlet-name>
+        <servlet-class>Controller.GRZDeleteProduct</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GRZUpdateProduct</servlet-name>
+        <servlet-class>Controller.GRZUpdateProduct</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GRZUpdateCustomer</servlet-name>
+        <servlet-class>Controller.GRZUpdateCustomer</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GRZDeleteCustomer</servlet-name>
+        <servlet-class>Controller.GRZDeleteCustomer</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GRZUpdateUser</servlet-name>
+        <servlet-class>GRZUpdateUser</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GRZChangeOrderStatus</servlet-name>
+        <servlet-class>Controller.GRZChangeOrderStatus</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GRZProductReport</servlet-name>
+        <servlet-class>Controller.GRZProductReport</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GRZBaseReport</servlet-name>
+        <servlet-class>BaseClass.GRZBBaseReport</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>GRZLogin</servlet-name>
         <url-pattern>/GRZLogin</url-pattern>
@@ -79,6 +111,38 @@
     <servlet-mapping>
         <servlet-name>GRZAddTransaction</servlet-name>
         <url-pattern>/GRZAddTransaction</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GRZDeleteProduct</servlet-name>
+        <url-pattern>/GRZDeleteProduct</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GRZUpdateProduct</servlet-name>
+        <url-pattern>/GRZUpdateProduct</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GRZUpdateCustomer</servlet-name>
+        <url-pattern>/GRZUpdateCustomer</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GRZDeleteCustomer</servlet-name>
+        <url-pattern>/GRZDeleteCustomer</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GRZUpdateUser</servlet-name>
+        <url-pattern>/GRZUpdateUser</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GRZChangeOrderStatus</servlet-name>
+        <url-pattern>/GRZChangeOrderStatus</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GRZProductReport</servlet-name>
+        <url-pattern>/GRZProductReport</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GRZBaseReport</servlet-name>
+        <url-pattern>/GRZBBaseReport</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

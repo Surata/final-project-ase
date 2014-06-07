@@ -32,6 +32,7 @@
             <div class="addProduct">
                 <p><%= count %> product listed</p>
                 <a class="button" href="GRZInsertProduct.jsp" >Add Product</a>
+                <a class="button" href="./GRZProductReport" style="width: 130px;">View Product Report</a>
             </div>
             <div class="productList">
                 <%
@@ -45,7 +46,11 @@
                     <table>
                         <tr>
                             <td style="width: 170px; color: red;"><%= product.getName() %></td>
-                            <td style="width: 80px; text-align: right;">Rp. <%= product.getPrice() %></td>
+                            <td style="width: 80px; text-align: right;">Rp. <%= String.format("%.0f",product.getPrice()) %></td>
+                        </tr>
+                        <tr>
+                            <td><a id="button" style="height: 25px;" href="./GRZUpdateProduct.jsp?id=<%= product.getProductID() %>">Update</a></td>
+                            <td><a id="button" style="height: 25px;" href="./GRZDeleteProduct?id=<%= product.getProductID() %>">Delete</a></td>
                         </tr>
                     </table>
                 </div>

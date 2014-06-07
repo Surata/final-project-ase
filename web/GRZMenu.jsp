@@ -75,6 +75,18 @@
                     %>
                     <div id="description">
                         <label id="desc"><%= product.getDescription()%></label>
+                        <%
+                            GRZUser user = GRZApplicationHelper.getCurrentUser(request);
+                            if(user != null){
+                                %>
+                                <a id="ordernow" href="<%= GRZConstant.ORDER_PAGE %>">Order Now</a>
+                                <%
+                            }else{
+                                %>
+                                <label id="info">Please register to order</label>
+                                <%
+                            }
+                        %>
                         <div class="productView">
                         <%
                         out.print("<img src='" + product.getImage() + "' />");

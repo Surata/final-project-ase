@@ -25,8 +25,26 @@
         <div class="outer">
             <div class="customerList">
                 <h1>Customer List</h1>
+                <div class="searchBar" style="border: none;">
+                <div id="searchDiv">      
+                    <form action="GRZCustomer.jsp" method="POST">
+                    <%
+                        String searchTxt = request.getParameter("searchTxt");
+                        if(searchTxt == null)
+                            searchTxt = "";
+                        out.print("<input id='input' type='text' name='searchTxt' value='" + searchTxt + "'/>");
+                    %>
+                   <input id="searchButton" type="submit" value="Search" />    
+                    </form>
+                </div>
+                </div>
                 <%
-                List users = GRZApplicationHelper.appService.getAllUser();
+                List users;
+                if(searchTxt!= null && !searchTxt.equals("")){
+                    users = GRZApplicationHelper.appService.getUserWithUsernameLike(searchTxt);
+                }else{
+                    users = GRZApplicationHelper.appService.getAllUser();
+                }
 
                 for(int i=0; i<users.size();i++){
                     GRZUser user = (GRZUser)users.get(i);
@@ -54,6 +72,10 @@
                                 Address : <%= user.getAddress() %>
                             </td>
                             <td> </td>
+                        </tr>
+                        <tr>
+                            <td><a id="button" style="height: 25px;" href="./GRZUpdateUser.jsp?id=<%= user.getUserID() %>">Update</a></td>
+                            <td><a id="button" style="height: 25px;" href="./GRZDeleteCustomer?id=<%= user.getUserID() %>">Delete</a></td>
                         </tr>
                     </table>
                 </div>

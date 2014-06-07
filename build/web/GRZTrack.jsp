@@ -26,7 +26,16 @@
         <%@include file="GRZHeader.jsp" %>
         <div class="outer">
             <div class="trackDiv">
-                <div></div>
+                <%
+                String success = request.getParameter("success");
+                if(success != null && !success.equals("")){
+                %>
+                <div id="info" style="background-color: #468847; text-align: center; color: white; width: 400px; height: 25px; margin: 15px auto 0 auto;">
+                    <%= success %>
+                </div>
+                <%
+                }
+                %>
                 <h2>My Order</h2>
                 <%
                     GRZUser user = GRZApplicationHelper.getCurrentUser(request);
@@ -35,19 +44,17 @@
                         GRZTransaction transaction = (GRZTransaction)transactions.get(i);
                         List orders = GRZApplicationHelper.appService.getOrderWithTransactionId(transaction.getTransactionID());
                         int status = transaction.getStatus();
-                        String statusDesc;
-                        if(status == 1){
-                            statusDesc = "In Progress";
-                        }else{
-                            statusDesc = "others";
-                        }
+                        String statusDesc = GRZApplicationHelper.getStatusDesc(status);
                         %>
-                        <div>
-                            Customer : <%= user.getUsername()%> <br />
-                            Order Time : <%= transaction.getDate() %> <br />
-                            Status : <%= statusDesc %> <br />
+                        <div style="text-align: left;">
                             <table>
                                 <tr>
+                                    <td>Customer : <%= user.getUsername()%></td>
+                                    <td><%= transaction.getDate() %></td>
+                                    <td>Status : <%= statusDesc %></td>
+                                    <td><a href="./GRZChangeOrderStatus?id=<%= transaction.getTransactionID() %>&status=6" id="button" style="height: 25px;">Cancel Order</a></td>
+                                </tr>
+                                <tr style="font-weight: bold; background: #CCCCCC;">
                                     <td>Product Name</td>
                                     <td>Price</td>
                                     <td>Quantity</td>
@@ -57,21 +64,29 @@
                                     for(int j=0; j<orders.size(); j++){
                                         GRZOrder order = (GRZOrder)orders.get(j);
                                         GRZProduct product = GRZApplicationHelper.appService.getProductWithId(order.getProductID());
+                                        if(product == null){
+                                            %>
+                                            <tr>
+                                                <td colspan="4" style="color: red;">Product has been removed from menu</td>
+                                            </tr>
+                                            <%
+                                        }else{
                                         %>
                                         <tr>
                                             <td><%= product.getName() %></td>
-                                            <td><%= product.getPrice() %></td>
+                                            <td><%= String.format("%.0f",product.getPrice()) %></td>
                                             <td><%= order.getQuantity() %></td>
-                                            <td><%= order.getSubTotal() %></td>
+                                            <td><%= String.format("%.0f", order.getSubTotal()) %></td>
                                         </tr>
                                         <%
+                                        }
                                     }
                                 %>
                                 <tr>
                                     <td></td>
                                     <td></td>
                                     <td>Total</td>
-                                    <td><%= transaction.getTotal() %></td>
+                                    <td><%= String.format("%.0f",transaction.getTotal()) %></td>
                                 </tr>
                             </table>
                         </div>

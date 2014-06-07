@@ -76,6 +76,29 @@ public class GRZService {
         }
         return null;
     }
+    
+    public List getUserWithUsernameLike(String key){
+        results = adapter.doSelect(GRZConstant.USER_SELECT_LIKE(key));
+        return results;
+    }
+    
+    public Boolean changeCustomerDetail(int id, 
+                                        String username,
+                                        String password,
+                                        String name,
+                                        String email,
+                                        String phone,
+                                        String address,
+                                        String status){
+        
+        GRZUser user = new GRZUser(id, username, password, name, email, phone, address, status);
+        
+        return adapter.doUpdate(user);
+    }
+    
+    public Boolean deleteUser(int userID){
+        return adapter.doDelete(GRZConstant.USER_DELETE_WITH_ID(userID));
+    }
    
     //Product
     
@@ -124,6 +147,16 @@ public class GRZService {
         return results;
     }
     
+    public Boolean changeProduct(int id, String productName, String productDesc, float productPrice, String image){
+        GRZProduct product = new GRZProduct(id, productName, productDesc, productPrice, image);
+        
+        return adapter.doUpdate(product);
+    }
+    
+    public Boolean deleteProduct(int productID){
+        return adapter.doDelete(GRZConstant.PRODUCT_DELETE_WITH_ID(productID));
+    }
+    
     //order
     
     public Boolean setOrder(int productID, int quantity, float subTotal, int transactionID){
@@ -165,6 +198,20 @@ public class GRZService {
         return adapter.doInsert(transaction);
     }
     
+    public List getAllTransactions(){
+        results = adapter.doSelect(GRZConstant.TRANSACTION_SELECT_ALL);
+        return results;
+    }
+    
+    public GRZTransaction getTransactionWithId(int id){
+        results = adapter.doSelect(GRZConstant.TRANSACTION_SELECT_WITH_ID(id));
+        if(results.size() > 0){
+            GRZTransaction transaction = (GRZTransaction)results.get(0);
+            return transaction;
+        }
+        return null;
+    }
+    
     public GRZTransaction getLastTransactionWithUserId(int userID){
         results = adapter.doSelect(GRZConstant.TRANSACTION_SELECT_WITH_USER(userID));
         if(results.size()>0){
@@ -190,6 +237,12 @@ public class GRZService {
         transaction.setTotal(total);
         transaction.setStatus(status);
         
+        return adapter.doUpdate(transaction);
+    }
+    
+    public Boolean changeTransactionStatus(int id, int status){
+        GRZTransaction transaction = getTransactionWithId(id);
+        transaction.setStatus(status);
         return adapter.doUpdate(transaction);
     }
 }

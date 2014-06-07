@@ -6,5 +6,7 @@
 
 <div class="footer">
     Grazie Pizza Delivery<br />
-    @ blue jack
+    @06PKT
+    1501146716
+    1501145000
 </div>

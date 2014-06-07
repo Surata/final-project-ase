@@ -41,10 +41,11 @@ public class GRZAddOrder extends GRZBaseController {
         int transactionID = Integer.parseInt(request.getParameter("transactionID"));
         float price = Float.parseFloat(request.getParameter("price"));
         float subTotal = calculateSubTotal(quantity, price);
-        
+        GRZProduct product = service.getProductWithId(productID);
+        String successString = quantity + " " + product.getName() + "(s) Added to Cart";
         Boolean success = service.setOrder(productID, quantity, subTotal, transactionID);
         if(success)
-            response.sendRedirect(GRZConstant.ORDER_PAGE);
+            response.sendRedirect(GRZConstant.ORDER_PAGE+"?success="+successString);
     }
     
     private float calculateSubTotal(int qty, float price){

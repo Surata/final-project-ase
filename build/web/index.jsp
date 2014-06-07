@@ -57,6 +57,19 @@
                                 <%= userCount %> user(s) online | <%= time%>
                             </td>
                         </tr>
+                        <tr style="height: 17px;">
+                            <td colspan="5" style="color: red; font-size: 12px;">
+                            <%
+                            String err = request.getParameter("err");
+                            if(err != null ) {
+                                %>
+                                <div id="errorBox">
+                                <%
+                                out.print(err);
+                            }
+                            %>
+                            </td>
+                        </tr>
                         <tr>
                             <td></td>
                             <td style="font-size: 10px;"><input type="checkbox" name="rememberMeChk" value="true">Remember Me</td>

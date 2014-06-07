@@ -22,11 +22,25 @@ public class GRZApplicationHelper {
         GRZUser user = (GRZUser)session.getAttribute("user");
         return user;
     }
-    
+
     public static String getDate() {
         String time = new SimpleDateFormat("YYYY-MM-dd hh:mm").format(Calendar.getInstance().getTime());
         return time;
     }
-    
+
+    public static String getStatusDesc(int status){
+        String statusDesc = "";
+        switch(status){
+            case 1 : statusDesc = "In Progress";break;
+            case 2 : statusDesc = "Packing";break;
+            case 3 : statusDesc = "En Route";break;
+            case 4 : statusDesc = "Delivered";break;
+            case 5 : statusDesc = "Cancelled";break;
+            default: statusDesc = "Cancelled";break;
+        }
+        return statusDesc;
+
+    }
+
     public static GRZService appService = new GRZService();
 }

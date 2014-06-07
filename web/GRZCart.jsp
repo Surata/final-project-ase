@@ -26,8 +26,20 @@
         <%@include file="GRZHeader.jsp" %>
         <div class="outer">
             <div class="cartDiv">
+                <%
+                String success = request.getParameter("success");
+                if(success != null && !success.equals("")){
+                %>
+                <div id="info" style="background-color: #468847; text-align: center; color: white; width: 400px; height: 25px; margin: 15px auto 0 auto;">
+                    <%= success %>
+                </div>
+                <%
+                }
+                %>
+                <h1>Your Cart</h1>
+                <div>
                 <table>
-                    <tr id="tableHeader">
+                    <tr id="tableHeader" style="font-weight: bold; background: #CCCCCC;">
                         <td>Product Name</td>
                         <td>Price</td>
                         <td>Quantity</td>
@@ -65,6 +77,7 @@
                     <td><%= user.getUserID()%></td>
                 </tr>
                 </table>
+                </div>
             </div>
         </div>
         <%@include file="GRZFooter.jsp" %>

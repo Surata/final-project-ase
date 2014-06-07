@@ -33,9 +33,9 @@
                     String status = user.getStatus();
                     if(status.equals("admin")){
             %>
-                    <li><a href="./<%= GRZConstant.CUSTOMER_PAGE %>">Customer</a></li>
-                    <li><a href="./<%= GRZConstant.PRODUCT_LIST_PAGE %>">Product</a></li>
-                    <li><a href="">Transaction</a></li>
+                    <li><a href="<%= GRZConstant.CUSTOMER_PAGE %>">Customer</a></li>
+                    <li><a href="<%= GRZConstant.PRODUCT_LIST_PAGE %>">Product</a></li>
+                    <li><a href="<%= GRZConstant.TRANSACTION_PAGE %>">Transaction</a></li>
             <%
                     }
                 }else{

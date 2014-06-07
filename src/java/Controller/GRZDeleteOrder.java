@@ -5,6 +5,8 @@
 package Controller;
 
 import BaseClass.GRZBaseController;
+import Bean.GRZOrder;
+import Bean.GRZProduct;
 import Bean.GRZUser;
 import Constants.GRZConstant;
 import java.io.IOException;
@@ -35,18 +37,23 @@ public class GRZDeleteOrder extends GRZBaseController {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
+       
+        String successDesc = "";
         if(id == 0){
-           
+            successDesc = "Remove all from cart";
             HttpSession session = request.getSession();
             GRZUser currentUser = (GRZUser)session.getAttribute("user");
             Boolean success = service.removeAllOrderWithUserId(currentUser.getUserID());
             if(success)
-                response.sendRedirect(GRZConstant.CART_PAGE);
+                response.sendRedirect(GRZConstant.CART_PAGE+"?success="+successDesc);
             
         }else{
+            GRZOrder order = service.getOrderWithId(id);
+            GRZProduct product = service.getProductWithId(order.getProductID());
+            successDesc = order.getQuantity() +" "+ product.getName() +"(s) Removed from Cart";
             Boolean success = service.removeOrderWithId(id);
             if(success)
-                response.sendRedirect(GRZConstant.CART_PAGE);
+                response.sendRedirect(GRZConstant.CART_PAGE+"?success="+successDesc);
         }
     }
 

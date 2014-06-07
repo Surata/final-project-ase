@@ -26,6 +26,17 @@ public class GRZUser {
     
     public GRZUser() {} // constructor
 
+    public GRZUser(int userID, String username, String password, String name, String email, String phone, String address, String status) {
+        this.userID = userID;
+        this.username = username;
+        this.password = password;
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.status = status;
+    }
+    
     public GRZUser(String username, String password, String name, String email, String phone, String address, String status) {
         this.username = username;
         this.password = password;

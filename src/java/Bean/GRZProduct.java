@@ -21,6 +21,14 @@ public class GRZProduct {
 
     public GRZProduct() {
     }
+    
+    public GRZProduct(int productID, String name, String description, float price, String image) {
+        this.productID = productID;
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.image = image;
+    }
 
     public GRZProduct(String name, String description, float price, String image) {
         this.name = name;
