@@ -72,6 +72,10 @@
         <servlet-name>GRZBaseReport</servlet-name>
         <servlet-class>BaseClass.GRZBBaseReport</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>HRZTransactionReport</servlet-name>
+        <servlet-class>Controller.GRZTransactionsReport</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>GRZLogin</servlet-name>
         <url-pattern>/GRZLogin</url-pattern>
@@ -143,6 +147,10 @@
     <servlet-mapping>
         <servlet-name>GRZBaseReport</servlet-name>
         <url-pattern>/GRZBBaseReport</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>HRZTransactionReport</servlet-name>
+        <url-pattern>/HRZTransactionReport</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

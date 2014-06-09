@@ -28,7 +28,7 @@
             <div class="trackDiv">
                 <div></div>
                 <h2>Transaction List</h2>
-                <a href="" style="color: red;">View Transaction Report</a>
+                <a href="./GRZTransactionsReport" style="color: red;">View Transaction Report</a>
                 <%
                     List transactions = GRZApplicationHelper.appService.getAllTransactions();
                     for(int i=0; i<transactions.size(); i++){
